@@ -52,7 +52,7 @@ public class Reference : MonoBehaviour
         
         if (OVRInput.GetDown(OVRInput.Button.One))
         {
-            //GameManager.instance.StartButton();
+           // GameManager.instance.StartButton();
             
             /*GameObject ball;
             Rigidbody ballRigidbody;
@@ -76,6 +76,7 @@ public class Reference : MonoBehaviour
         {
             //Y
             //GameManager.instance.EndButton();
+
         }
     }
 
