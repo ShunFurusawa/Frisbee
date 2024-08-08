@@ -70,12 +70,13 @@ public class Reference : MonoBehaviour
         if (OVRInput.GetDown(OVRInput.Button.Two))
         {
             //B
-          //  GameManager.instance.RestartButton();
+            //GameManager.instance.RestartButton();
         }
         if (OVRInput.GetDown(OVRInput.Button.Four))
         {
             //Y
-           // GameManager.instance.EndButton();
+            //GameManager.instance.EndButton();
+
         }
     }
 
@@ -83,7 +84,7 @@ public class Reference : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ball"))
         {
-           // GameManager.instance.PlaySE(RacketHitS);
+            //GameManager.instance.PlaySE(RacketHitS);
 
             //velocityがそのままだと強すぎるのでcontrolPowerを掛けて制限する
             velocity = Vector3.Scale(velocity, new Vector3(controlPower, controlPower, controlPower));
