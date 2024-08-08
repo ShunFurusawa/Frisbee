@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.XR;
 
+
 public class ThrowFrisbee : MonoBehaviour
 {
     public XRNode node;
@@ -25,21 +26,51 @@ public class ThrowFrisbee : MonoBehaviour
     void Update()
     {
         InputTracking.GetNodeStates(states);
-
+        CheckInput();
+        
+        CheckVelocity();
+        
     }
 
-    private void CheckInputState()
+    private void CheckVelocity()
     {
-        foreach (XRNodeState s in states)
+        if (GameManager.instance.ReturnCurrentState() == FrisbeeState.Ready)
         {
-            if (s.nodeType == node)
+            foreach (XRNodeState s in states)
             {
-                tracked = s.tracked;
-                s.TryGetVelocity(out m_velocity);
+                if (s.nodeType == node)
+                {
+                    tracked = s.tracked;
+                    s.TryGetVelocity(out m_velocity);
                 
-               // s.TryGetAcceleration();   前回加速度の取得できなかったきがする
-               break;
+                    // s.TryGetAcceleration();   前回加速度の取得できなかったきがする
+                    break;
+                }
+            }
+
+            if (OVRInput.GetDown(OVRInput.RawButton.RIndexTrigger) == false)
+            {
+                //Ready状態でTriggerの入力がなくなる = 投げ?
+                Throw();
+                GameManager.instance.SetCurrentState(FrisbeeState.Fly);
             }
         }
+    }
+
+    private void CheckInput()
+    {
+        //フリスビーを持っている状態じゃなかったら入力取らない
+        if (GameManager.instance.ReturnCurrentState() != FrisbeeState.Have)
+            return;
+        
+        if (OVRInput.GetDown(OVRInput.RawButton.RIndexTrigger))
+        {
+            GameManager.instance.SetCurrentState(FrisbeeState.Ready);
+        }
+    }
+
+    private void Throw()
+    {
+        //Frisbee飛ばす処理
     }
 }
