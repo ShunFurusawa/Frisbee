@@ -43,8 +43,9 @@ public class GameManager : MonoBehaviour
     public void SetCurrentState(FrisbeeState state)
     {
         currentFrisbeeState = state;
+        Debug.Log("set " + state);
     }
-    public FrisbeeState ReturnCurrentState()
+    public FrisbeeState GetCurrentState()
     {
         return currentFrisbeeState;
     }
