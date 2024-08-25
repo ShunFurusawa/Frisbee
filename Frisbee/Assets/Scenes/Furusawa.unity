@@ -852,7 +852,8 @@ PrefabInstance:
       value: Frisbee
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4396644175114966212, guid: 7c8fe0a8574199f44a7851209a59795d, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 9210741682833451940, guid: 7c8fe0a8574199f44a7851209a59795d, type: 3}
@@ -9138,8 +9139,7 @@ MonoBehaviour:
   node: 5
   tracked: 0
   m_velocity: {x: 0, y: 0, z: 0}
-  controlPower: 0.05
-  m_direction: {x: 0, y: 0, z: 0}
+  controlPower: {x: 7, y: 2, z: 7}
 --- !u!1 &1756854970
 GameObject:
   m_ObjectHideFlags: 0

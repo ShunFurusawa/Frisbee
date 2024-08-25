@@ -12,15 +12,10 @@ public class ThrowFrisbee : MonoBehaviour
 
     public bool tracked = false; //データ取得可能か
     public Vector3 m_velocity; // 速度
-    
-    [SerializeField] private float controlPower = 0.05f;
 
-    [SerializeField] private Vector3 m_direction = default!;
-    
-    
-
+    [SerializeField] private Vector3 controlPower = default!;
+  
     private List<XRNodeState> states;
-
     private Rigidbody m_RB;
     // Start is called before the first frame update
     void Start()
@@ -34,7 +29,6 @@ public class ThrowFrisbee : MonoBehaviour
     {
         InputTracking.GetNodeStates(states);
         CheckReadyInput();
-        
         CheckVelocity();
         
     }
@@ -59,6 +53,7 @@ public class ThrowFrisbee : MonoBehaviour
             {
                 //Ready状態でTriggerの入力がなくなる = 投げ?
                 GameManager.instance.SetCurrentState(FrisbeeState.Fly);
+                SetUpFrisbeeRB();
                 Throw();
             }
         }
@@ -73,7 +68,6 @@ public class ThrowFrisbee : MonoBehaviour
         if (OVRInput.GetDown(OVRInput.RawButton.RIndexTrigger))
         {
             GameManager.instance.SetCurrentState(FrisbeeState.Ready);
-            
         }
     }
 
@@ -81,17 +75,18 @@ public class ThrowFrisbee : MonoBehaviour
     {
         //Frisbee飛ばす処理
         Vector3 direction;
-        direction = (transform.position - m_direction).normalized;
-        m_velocity = Vector3.Scale(m_velocity, direction);
-        m_RB.AddForce(m_velocity, ForceMode.Impulse);
+      //  direction = (transform.position - m_direction.position).normalized;
+     //   m_velocity = Vector3.Scale(m_velocity, direction);
+        m_velocity = Vector3.Scale(m_velocity,  controlPower);
+        
+       // m_RB.AddForce(m_velocity, ForceMode.Impulse);
+       m_RB.velocity = m_velocity;
     }
 
     private void SetUpFrisbeeRB()
     {
         //重力on 親子付け解除　加速度デカくしたほうがよさそう
-        /*if (GameManager.instance.GetCurrentState() = FrisbeeState.Fly)
-        {
-            
-        }*/
+        m_RB.useGravity = true;
+        gameObject.transform.parent = null;
     }
 } 
