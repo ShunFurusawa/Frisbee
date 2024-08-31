@@ -6,10 +6,13 @@ namespace Shibato
     public class FrisbeeTest:MonoBehaviour
     {
         private Rigidbody rb;
-
+        public GameObject Player;
+        private PlayerCamera camera;
+        
         private void Start()
         {
             rb = transform.GetComponent<Rigidbody>();
+            camera = Player.gameObject.GetComponent<PlayerCamera>();
         }
 
         void Update()
@@ -34,7 +37,10 @@ namespace Shibato
 
             if (collision.gameObject.CompareTag("spines"))
             {
-                Destroy(this.gameObject);
+                //カメラを切り替え→壊れるアニメーション
+                camera.MyDestroyed();
+                
+                //Destroy(this.gameObject);
             }
         }
     }
