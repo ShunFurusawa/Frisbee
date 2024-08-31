@@ -84,6 +84,7 @@ public class ThrowFrisbee : MonoBehaviour
     }
 
     private void SetUpFrisbeeRB()
+    
     {
         //重力on 親子付け解除　加速度デカくしたほうがよさそう
         m_RB.useGravity = true;

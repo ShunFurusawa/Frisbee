@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Item
   - spines
+  - CanTP
   layers:
   - Default
   - TransparentFX
