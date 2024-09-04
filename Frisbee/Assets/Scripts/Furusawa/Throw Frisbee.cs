@@ -30,12 +30,11 @@ public class ThrowFrisbee : MonoBehaviour
         InputTracking.GetNodeStates(states);
         CheckReadyInput();
         CheckVelocity();
-        
     }
 
     private void CheckVelocity()
     {
-        if (GameManager.instance.GetCurrentState() == FrisbeeState.Ready)
+        if (GameManager.instance.State == FrisbeeState.Ready)
         {
             foreach (XRNodeState s in states)
             {
@@ -52,7 +51,7 @@ public class ThrowFrisbee : MonoBehaviour
             if (OVRInput.GetUp(OVRInput.RawButton.RIndexTrigger))
             {
                 //Ready状態でTriggerの入力がなくなる = 投げ?
-                GameManager.instance.SetCurrentState(FrisbeeState.Fly);
+                GameManager.instance.State = FrisbeeState.Fly;
                 SetUpFrisbeeRB();
                 Throw();
             }
@@ -62,21 +61,18 @@ public class ThrowFrisbee : MonoBehaviour
     private void CheckReadyInput()
     {
         //フリスビーを持っている状態じゃなかったら入力取らない
-        if (GameManager.instance.GetCurrentState() != FrisbeeState.Have)
+        if (GameManager.instance.State != FrisbeeState.Have)
             return;
         
         if (OVRInput.GetDown(OVRInput.RawButton.RIndexTrigger))
         {
-            GameManager.instance.SetCurrentState(FrisbeeState.Ready);
+            GameManager.instance.State = FrisbeeState.Ready;
         }
     }
 
     private void Throw()
     {
         //Frisbee飛ばす処理
-        Vector3 direction;
-      //  direction = (transform.position - m_direction.position).normalized;
-     //   m_velocity = Vector3.Scale(m_velocity, direction);
         m_velocity = Vector3.Scale(m_velocity,  controlPower);
         
        // m_RB.AddForce(m_velocity, ForceMode.Impulse);
@@ -84,7 +80,6 @@ public class ThrowFrisbee : MonoBehaviour
     }
 
     private void SetUpFrisbeeRB()
-    
     {
         //重力on 親子付け解除　加速度デカくしたほうがよさそう
         m_RB.useGravity = true;

@@ -7,6 +7,7 @@ public enum FrisbeeState
     Have,
     Ready,
     Fly,
+    Return,
     GetItem
 }
 
@@ -17,7 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private FrisbeeState currentFrisbeeState;
     private void Awake()
     {
-        SetCurrentState(FrisbeeState.Have);
+        State = FrisbeeState.Have;
 
         if (instance == null)
         {
@@ -40,13 +41,12 @@ public class GameManager : MonoBehaviour
     {
         
     }
-    public void SetCurrentState(FrisbeeState state)
+
+    private FrisbeeState _state;
+    public FrisbeeState State
     {
-        currentFrisbeeState = state;
-        Debug.Log("set " + state);
+        get { return _state; }
+        set { _state = value; }
     }
-    public FrisbeeState GetCurrentState()
-    {
-        return currentFrisbeeState;
-    }
+  
 }
