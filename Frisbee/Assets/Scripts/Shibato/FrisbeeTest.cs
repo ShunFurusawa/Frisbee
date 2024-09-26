@@ -9,9 +9,7 @@ namespace Shibato
         public GameObject Player;
         private PlayerCamera camera;
         private float up =0;
-        [Header("風力")]
-        [Range(0,10)]
-        [SerializeField] private float changeUp = 3;
+
         
         private void Start()
         {
