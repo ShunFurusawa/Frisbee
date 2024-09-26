@@ -8,6 +8,10 @@ namespace Shibato
         private Rigidbody rb;
         public GameObject Player;
         private PlayerCamera camera;
+        private float up =0;
+        [Header("風力")]
+        [Range(0,10)]
+        [SerializeField] private float changeUp = 3;
         
         private void Start()
         {
@@ -17,7 +21,7 @@ namespace Shibato
 
         void Update()
         {
-            Vector3 force = new Vector3(1, 0, 0);
+            Vector3 force = new Vector3(1, up, 0);
             rb.AddForce(force, ForceMode.Force);
             
         }
@@ -40,8 +44,19 @@ namespace Shibato
                 //カメラを切り替え→壊れるアニメーション
                 camera.MyDestroyed();
                 
-                //Destroy(this.gameObject);
+                Destroyanimetion();
             }
+        }
+
+        public void Fan(float up)
+        {
+            this.up = up;
+        }
+        private void Destroyanimetion()
+        {
+            Invoke("camera.RemoveCamera",1);
+            //camera.RemoveCamera();
+            Destroy(gameObject,2f);
         }
     }
 }
