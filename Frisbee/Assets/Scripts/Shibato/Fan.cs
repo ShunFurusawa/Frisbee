@@ -3,27 +3,21 @@ using UnityEngine;
 using Object = System.Object;
 
 namespace Shibato
-{
+{        
     public class Fan:MonoBehaviour
     {
-        [Header("風力")]
-        [Range(0,1)]
-        [SerializeField] private float changeUp = 0.1f;
+        [Header("風の強さ")]
+        public float liftForce = 10f;
+        [Header("風の向き")]
+        public Vector3 windDirection = Vector3.up;
 
-        private float up;
-        //[SerializeField] private GameObject frisbeeGameobject;
-        private void OnTriggerEnter(Collider collision)
+        private void OnTriggerStay(Collider other)
         {
-            if (collision.gameObject.CompareTag("Frisbee"))
+            Rigidbody rb = other.GetComponent<Rigidbody>();
+            if (rb != null && other.CompareTag("Player")) // 浮かせたいオブジェクトのタグ
             {
-                up = changeUp;
-                collision.GetComponent<FrisbeeTest>().Fan(up);
-                Debug.Log("WindHit");
-            }
-            else
-            {
-                up = 0;
-                collision.GetComponent<FrisbeeTest>().Fan(up);
+                Vector3 lift = windDirection * liftForce;
+                rb.AddForce(lift, ForceMode.Acceleration);
             }
         }
     }

@@ -8,9 +8,7 @@ namespace Shibato
         private Rigidbody rb;
         public GameObject Player;
         private PlayerCamera camera;
-        private float up =0;
-
-        
+        public float speed = 5f;
         private void Start()
         {
             rb = transform.GetComponent<Rigidbody>();
@@ -19,9 +17,7 @@ namespace Shibato
 
         void Update()
         {
-            Vector3 force = new Vector3(1, up, 0);
-            rb.AddForce(force, ForceMode.Force);
-            
+            rb.velocity = new Vector3(speed, rb.velocity.y, rb.velocity.z);
         }
 
         private void OnTriggerEnter(Collider collision)
@@ -44,11 +40,6 @@ namespace Shibato
                 
                 Destroyanimetion();
             }
-        }
-
-        public void Fan(float up)
-        {
-            this.up = up;
         }
         private void Destroyanimetion()
         {
