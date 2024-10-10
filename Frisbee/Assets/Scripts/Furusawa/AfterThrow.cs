@@ -25,26 +25,40 @@ public class AfterThrow : MonoBehaviour
     {
         if (GameManager.instance.State == FrisbeeState.Return)
         {
+            Debug.Log("now return");
             ReturnFrisbee();
         }
     }
     
     private void OnCollisionEnter(Collision other)
     {
-        //TP可能な床か調べる
-        if (Physics.Raycast(gameObject.transform.position, Vector3.down, out _hit, 1.0f))
+        if (GameManager.instance.State == FrisbeeState.Fly ||
+            GameManager.instance.State == FrisbeeState.GetItem)
         {
-            if (_hit.collider.gameObject.CompareTag("CanTP"))
-            {
-                Teleport(_cameraRig, gameObject.transform);
-            }
+            //TP可能な床か調べる
+         //   if (Physics.Raycast(gameObject.transform.position, Vector3.down, out _hit, 1.0f))
+          //  {}
+                if (other.collider.gameObject.CompareTag("CanTP"))
+                {
+                    Teleport(_cameraRig, gameObject.transform);
+                }
+                else
+                {
+                    Debug.Log("can`t TP");
+                    SetVelocityToZero();
+                    GameManager.instance.State = FrisbeeState.Return;
+                    _RB.useGravity = false;
+                    gameObject.layer = LayerMask.NameToLayer("Frisbee");
+                }
+         
         }
-
+        
         if (GameManager.instance.State == FrisbeeState.Return)
         {
             if (other.gameObject.CompareTag("Player"))
             {
                 SetFrisbeeAtHand();
+                Debug.Log("Return!");
             }
         }
     }
@@ -55,6 +69,7 @@ public class AfterThrow : MonoBehaviour
 
         if (tpPoint.position == tpObj.position)
         {
+            GameManager.instance.State = FrisbeeState.Return;
             SetFrisbeeAtHand();
             Debug.Log("TP Success!");
         }
@@ -76,33 +91,42 @@ public class AfterThrow : MonoBehaviour
 
     private Vector3 _direction;
     private Transform _target;
-    [SerializeField] private float _moveSpeed = 0.5f;
+    [SerializeField] private float _moveSpeed = 5f;
         
     private void ReturnFrisbee()
     {
       　//コライダー無効可->手元に飛ばす->SetFrisbee呼び出す
-       _collider.enabled = false;
+      // _collider.enabled = false;
 
        _target = _frisParent;
        _direction = (_target.position - transform.position).normalized;
        _RB.AddForce(_direction * _moveSpeed);
     }
 
-    private void SetFrisbeeAtHand()
+    public void SetFrisbeeAtHand()
     {
-        if (_collider.enabled == false)
-        {
-            _collider.enabled = true;
-        }
-
         SetVelocityToZero();
         this.gameObject.transform.parent = _frisParent;
-        this.gameObject.transform.position = new Vector3(0, 0, 0.2f);
-        GameManager.instance.State = FrisbeeState.Have;
+        //this.gameObject.transform.position = new Vector3(0, 0, 0.2f);
         
         if (gameObject.transform.parent == _frisParent)
         {
-            Debug.Log("Return!");
+            if (gameObject.layer == LayerMask.NameToLayer("Frisbee"))
+            {
+                gameObject.layer = LayerMask.NameToLayer("Default");
+            }
+           Debug.Log("return frisbee");
+           GameManager.instance.State = FrisbeeState.Have;
+           SetVelocityToZero();
+           this.gameObject.transform.localPosition = new Vector3(0, 0, 0.2f);
+        }
+        else
+        {
+            Debug.Log("parent fail!");
+        }
+        if (_collider.enabled == false)
+        {
+            _collider.enabled = true;
         }
     }
 }
