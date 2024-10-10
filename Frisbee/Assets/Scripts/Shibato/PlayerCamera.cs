@@ -29,6 +29,16 @@ public class PlayerCamera : MonoBehaviour
         SwitchCamera(activeCamera);
     }
 
+    public void RemoveCamera()
+    {
+        if (activeCamera == DeathCamera)
+            activeCamera = MyPlayerCamera;
+        else
+            activeCamera = DeathCamera;
+
+        SwitchCamera(activeCamera);
+    }
+
     private void SwitchCamera(GameObject newCamera)
     {
         // 全カメラを無効化し、選択したカメラを有効化

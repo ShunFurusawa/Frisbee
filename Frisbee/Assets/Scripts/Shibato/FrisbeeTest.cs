@@ -1,37 +1,35 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Shibato
 {
-    public class FrisbeeTest:MonoBehaviour
+    public class FrisbeeTest : MonoBehaviour
     {
-        private Rigidbody rb;
         public GameObject Player;
+        public float speed = 5f;
         private PlayerCamera camera;
-        
+        private Rigidbody rb;
+
         private void Start()
         {
             rb = transform.GetComponent<Rigidbody>();
             camera = Player.gameObject.GetComponent<PlayerCamera>();
         }
 
-        void Update()
+        private void Update()
         {
-            Vector3 force = new Vector3(1, 0, 0);
-            rb.AddForce(force, ForceMode.Force);
-            
+            rb.velocity = new Vector3(speed, rb.velocity.y, rb.velocity.z);
         }
 
         private void OnTriggerEnter(Collider collision)
         {
             if (collision.gameObject.CompareTag("Item"))
             {
-                GameObject copiedObject =
-                    Instantiate(collision.gameObject, transform.position + Vector3.up, Quaternion.identity,this.transform);
-        
+                var copiedObject =
+                    Instantiate(collision.gameObject, transform.position + Vector3.up, Quaternion.identity, transform);
+
                 // コピーしたオブジェクトの見た目を同じにする
                 copiedObject.transform.localScale = collision.transform.localScale;
-                
+
                 Destroy(collision.gameObject);
             }
 
@@ -39,9 +37,16 @@ namespace Shibato
             {
                 //カメラを切り替え→壊れるアニメーション
                 camera.MyDestroyed();
-                
-                //Destroy(this.gameObject);
+
+                Destroyanimetion();
             }
+        }
+
+        private void Destroyanimetion()
+        {
+            Invoke("camera.RemoveCamera", 1);
+            //camera.RemoveCamera();
+            Destroy(gameObject, 2f);
         }
     }
 }
