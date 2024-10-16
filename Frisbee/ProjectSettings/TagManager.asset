@@ -8,6 +8,7 @@ TagManager:
   - spines
   - CanTP
   - Wind
+  - Fire
   layers:
   - Default
   - TransparentFX
