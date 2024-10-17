@@ -25,7 +25,7 @@ public class AfterThrow : MonoBehaviour
     {
         if (GameManager.instance.State == FrisbeeState.Return)
         {
-            Debug.Log("now return");
+           // Debug.Log("now return");
             ReturnFrisbee();
         }
     }
@@ -47,16 +47,25 @@ public class AfterThrow : MonoBehaviour
                     Debug.Log("can`t TP");
                     SetVelocityToZero();
                     GameManager.instance.State = FrisbeeState.Return;
+                    if (GameManager.instance.State == FrisbeeState.Return)
+                    {
+                        Debug.Log("return state");
+                    }
                     _RB.useGravity = false;
                     gameObject.layer = LayerMask.NameToLayer("Frisbee");
                 }
-         
         }
-        
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {    //  Debug.Log("Trigger");
+           Debug.Log("state = " + GameManager.instance.State);
         if (GameManager.instance.State == FrisbeeState.Return)
         {
-            if (other.gameObject.CompareTag("Player"))
+            Debug.Log("call State");
+            if (other.gameObject.CompareTag("GameController"))
             {
+                Debug.Log("Tag");
                 SetFrisbeeAtHand();
                 Debug.Log("Return!");
             }
@@ -111,11 +120,13 @@ public class AfterThrow : MonoBehaviour
         
         if (gameObject.transform.parent == _frisParent)
         {
+            
             if (gameObject.layer == LayerMask.NameToLayer("Frisbee"))
             {
+                Debug.Log("Layer");
                 gameObject.layer = LayerMask.NameToLayer("Default");
             }
-           Debug.Log("return frisbee");
+            Debug.Log("call return frisbee");
            GameManager.instance.State = FrisbeeState.Have;
            SetVelocityToZero();
            this.gameObject.transform.localPosition = new Vector3(0, 0, 0.2f);
