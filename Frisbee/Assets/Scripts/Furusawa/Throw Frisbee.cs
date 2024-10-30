@@ -76,7 +76,41 @@ public class ThrowFrisbee : MonoBehaviour
         m_velocity = Vector3.Scale(m_velocity,  controlPower);
         
        // m_RB.AddForce(m_velocity, ForceMode.Impulse);
-       m_RB.velocity = m_velocity;
+       
+       m_RB.velocity = AdjustVelocity(m_velocity);
+    }
+
+    private Vector3 AdjustVelocity(Vector3 velocity)
+    {
+        float maximum = velocity.z;
+
+        if (maximum < velocity.x)
+        {
+            maximum = velocity.x;
+        }
+        else
+        {
+            Vector3.Scale(velocity, new Vector3(0f, 1f, 1f));
+        }
+
+        if (maximum < velocity.y)
+        {
+            maximum = velocity.y;
+        }
+        else
+        {
+            Vector3.Scale(velocity, new Vector3(1f, 0f, 1f));
+        }
+
+        if (Mathf.Approximately(maximum, velocity.z))
+        {
+            return velocity;   
+        }
+        else
+        {
+            Vector3.Scale(velocity, new Vector3(1f, 1f, 0f));
+            return velocity;
+        }
     }
 
     private void SetUpFrisbeeRB()
