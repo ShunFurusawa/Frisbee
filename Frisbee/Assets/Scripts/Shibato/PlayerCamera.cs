@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour
 {
-    public GameObject MyPlayerCamera;
-    public GameObject DeathCamera;
+    [SerializeField] [CustomLabel("プレイヤーのカメラ")] private GameObject MyPlayerCamera;
+    [SerializeField] [CustomLabel("フリスビーの死亡時カメラ")] private GameObject DeathCamera;
 
     private GameObject activeCamera;
     

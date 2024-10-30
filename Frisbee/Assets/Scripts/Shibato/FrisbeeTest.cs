@@ -4,10 +4,10 @@ namespace Shibato
 {
     public class FrisbeeTest : MonoBehaviour
     {
-        [SerializeField] [Header("プレイヤーカメラ")] public GameObject Player;
+        [SerializeField] [CustomLabel("プレイヤーカメラ")] public GameObject Player;
         public float speed = 5f;
 
-        [SerializeField] [Header("火のオブジェクト、エフェクト")]
+        [SerializeField] [CustomLabel("火のオブジェクト、エフェクト")]
         private GameObject fireGameObject;
 
         private PlayerCamera camera;

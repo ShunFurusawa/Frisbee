@@ -4,9 +4,9 @@ namespace Shibato.feature
 {
     public class Fire : MonoBehaviour
     {
-        [SerializeField] private GameObject firePrefab;
+        [SerializeField] [CustomLabel("火のエフェクト")] private GameObject firePrefab;
 
-        [SerializeField] [Header("火が付いた時に何か起こすオブジェクト")]
+        [SerializeField] [CustomLabel("火が付いた時に何か起こすオブジェクト")]
         private GameObject gimmickGameObject;
 
         private GameObject currentFireInstance;

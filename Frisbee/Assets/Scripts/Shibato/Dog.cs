@@ -3,8 +3,8 @@ using UnityEngine.AI;
 
 public class Dog : MonoBehaviour
 {
-    public Transform target; // 追いかけるターゲット（例: プレイヤー）
-    public float stoppingDistance = 1.5f; // ターゲットに近づきすぎない距離
+    [SerializeField] [CustomLabel("追いかけるターゲット")] private Transform target;
+    [SerializeField] [CustomLabel("ターゲットに近づきすぎない距離")] private float stoppingDistance = 1.5f; 
     private NavMeshAgent agent; // ナビゲーションメッシュエージェント
     private bool isTargetInRange; // ターゲットが範囲内にいるかどうか
 
