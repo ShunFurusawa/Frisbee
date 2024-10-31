@@ -103,7 +103,7 @@ public class ThrowFrisbee : MonoBehaviour
         
        // m_RB.AddForce(m_velocity, ForceMode.Impulse);
        
-       m_RB.velocity = AdjustVelocity(m_velocity);
+       _RB.velocity = AdjustVelocity(_velocity);
     }
 
     private Vector3 AdjustVelocity(Vector3 velocity)
