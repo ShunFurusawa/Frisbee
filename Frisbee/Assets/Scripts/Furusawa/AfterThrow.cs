@@ -47,6 +47,7 @@ public class AfterThrow : MonoBehaviour
                     Debug.Log("can`t TP");
                     SetVelocityToZero();
                     GameManager.instance.State = FrisbeeState.Return;
+                    
                     if (GameManager.instance.State == FrisbeeState.Return)
                     {
                         Debug.Log("return state");
@@ -130,6 +131,7 @@ public class AfterThrow : MonoBehaviour
            GameManager.instance.State = FrisbeeState.Have;
            SetVelocityToZero();
            this.gameObject.transform.localPosition = new Vector3(0, 0, 0.2f);
+           this.gameObject.transform.localRotation = Quaternion.identity;
         }
         else
         {
