@@ -4,26 +4,26 @@ namespace Shibato
 {
     public class FrisbeeTest : MonoBehaviour
     {
-        [SerializeField] [JapaneseLabel("プレイヤーカメラ")] private GameObject Player;
+        [SerializeField] [JapaneseLabel("プレイヤーカメラ")] private GameObject player;
         [SerializeField] [JapaneseLabel("プレイヤーカメラ")] private float speed = 5f;
 
         [SerializeField] [JapaneseLabel("火のオブジェクト、エフェクト")]
         private GameObject fireGameObject;
 
-        private PlayerCamera camera;
-        private Rigidbody rb;
+        private PlayerCamera _camera;
+        private Rigidbody _rb;
 
         public bool FireElement { get; private set; }
 
-        private void Start()
+        private void Awake()
         {
-            rb = transform.GetComponent<Rigidbody>();
-            camera = Player.gameObject.GetComponent<PlayerCamera>();
+            _rb = transform.GetComponent<Rigidbody>();
+            _camera = player.gameObject.GetComponent<PlayerCamera>();
         }
 
         private void Update()
         {
-            rb.velocity = new Vector3(speed, rb.velocity.y, rb.velocity.z);
+            _rb.velocity = new Vector3(speed, _rb.velocity.y, _rb.velocity.z);
         }
 
         private void OnTriggerEnter(Collider other)
@@ -52,7 +52,7 @@ namespace Shibato
 
         private void SpinesCollision()
         {
-            camera.MyDestroyed();
+            _camera.MyDestroyed();
             Destroyanimetion();
         }
 

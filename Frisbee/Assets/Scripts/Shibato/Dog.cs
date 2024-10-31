@@ -8,7 +8,7 @@ public class Dog : MonoBehaviour
     private NavMeshAgent agent; // ナビゲーションメッシュエージェント
     private bool isTargetInRange; // ターゲットが範囲内にいるかどうか
 
-    private void Start()
+    private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
     }

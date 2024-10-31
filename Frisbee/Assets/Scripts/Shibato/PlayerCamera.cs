@@ -7,7 +7,7 @@ public class PlayerCamera : MonoBehaviour
 
     private GameObject activeCamera;
     
-    private void Start()
+    private void Awake()
     {
         activeCamera = MyPlayerCamera;
         SwitchCamera(activeCamera);

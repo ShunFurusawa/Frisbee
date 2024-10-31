@@ -18,7 +18,7 @@ public class CameraRay : MonoBehaviour
     Vector3 _difference;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         _difference = (player.transform.position - this.transform.position);
         maxDistance = _difference.magnitude;    //二つのオブジェクト間のベクトルの長さを求めて格納、Rayを飛ばす最大距離を制限
