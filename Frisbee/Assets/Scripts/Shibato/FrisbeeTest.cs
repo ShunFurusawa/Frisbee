@@ -4,16 +4,10 @@ namespace Shibato
 {
     public class FrisbeeTest : MonoBehaviour
     {
-        [SerializeField] [JapaneseLabel("プレイヤーカメラ")] private GameObject Player;
-        [SerializeField] [JapaneseLabel("プレイヤーカメラ")] private float speed = 5f;
-
-        [SerializeField] [JapaneseLabel("火のオブジェクト、エフェクト")]
-        private GameObject fireGameObject;
-
+        public GameObject Player;
+        public float speed = 5f;
         private PlayerCamera camera;
         private Rigidbody rb;
-
-        public bool FireElement { get; private set; }
 
         private void Start()
         {
@@ -26,42 +20,25 @@ namespace Shibato
             rb.velocity = new Vector3(speed, rb.velocity.y, rb.velocity.z);
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerEnter(Collider collision)
         {
-            switch (other.gameObject.tag)
+            if (collision.gameObject.CompareTag("Item"))
             {
-                case "Item":
-                    ItemCollision(other);
-                    break;
-                case "spines":
-                    SpinesCollision();
-                    break;
-                case "Fire":
-                    FireCollision();
-                    break;
+                var copiedObject =
+                    Instantiate(collision.gameObject, transform.position + Vector3.up, Quaternion.identity, transform);
+
+                // コピーしたオブジェクトの見た目を同じにする
+                copiedObject.transform.localScale = collision.transform.localScale;
+
+                Destroy(collision.gameObject);
             }
-        }
 
-        private void ItemCollision(Collider item)
-        {
-            var copiedObject = Instantiate(item.gameObject, transform.position + Vector3.up, Quaternion.identity,
-                transform);
-            copiedObject.transform.localScale = item.transform.localScale;
-            Destroy(item.gameObject);
-        }
-
-        private void SpinesCollision()
-        {
-            camera.MyDestroyed();
-            Destroyanimetion();
-        }
-
-        private void FireCollision()
-        {
-            if (!FireElement)
+            if (collision.gameObject.CompareTag("spines"))
             {
-                Instantiate(fireGameObject, transform.position, Quaternion.identity, transform);
-                FireElement = true;
+                //カメラを切り替え→壊れるアニメーション
+                camera.MyDestroyed();
+
+                Destroyanimetion();
             }
         }
 
