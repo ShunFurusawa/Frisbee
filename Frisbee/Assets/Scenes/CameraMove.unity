@@ -2539,7 +2539,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!23 &1483312316
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3207,7 +3207,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!136 &1977469547
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3418,7 +3418,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 621037166}
   speed: 5
-  fireGameObject: {fileID: 5523813300628688629, guid: 2cc2a863427c24a44a670fb7891e57db, type: 3}
 --- !u!54 &1990154310
 Rigidbody:
   m_ObjectHideFlags: 0
