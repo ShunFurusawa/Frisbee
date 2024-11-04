@@ -4,9 +4,9 @@ namespace Shibato
 {
     public class Fan : MonoBehaviour
     {
-        [Header("風の強さ")] public float liftForce = 10f;
+        [JapaneseLabel("風の強さ")] private float liftForce = 10f;
 
-        [Header("風の向き")] public Vector3 windDirection = Vector3.up;
+        [JapaneseLabel("風の向き")] private Vector3 windDirection = Vector3.up;
 
         private void OnTriggerStay(Collider other)
         {

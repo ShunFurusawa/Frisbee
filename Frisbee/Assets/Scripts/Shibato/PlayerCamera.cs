@@ -2,46 +2,37 @@ using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour
 {
-    public GameObject MyPlayerCamera;
-    public GameObject DeathCamera;
+    [SerializeField] [JapaneseLabel("プレイヤーのカメラ")] private GameObject MyPlayerCamera;
+    [SerializeField] [JapaneseLabel("フリスビーの死亡時カメラ")] private GameObject DeathCamera;
 
     private GameObject activeCamera;
-
-    // Start is called before the first frame update
+    
     private void Start()
     {
         activeCamera = MyPlayerCamera;
         SwitchCamera(activeCamera);
     }
-
-    // Update is called once per frame
-    private void Update()
-    {
-    }
-
     public void MyDestroyed()
     {
-        if (activeCamera == MyPlayerCamera)
+        if (activeCamera != DeathCamera)
+        {
             activeCamera = DeathCamera;
-        else
-            activeCamera = MyPlayerCamera;
-
-        SwitchCamera(activeCamera);
+            SwitchCamera(activeCamera);
+        }
     }
 
     public void RemoveCamera()
     {
-        if (activeCamera == DeathCamera)
+        // MyPlayerCamera に切り替え
+        if (activeCamera != MyPlayerCamera)
+        {
             activeCamera = MyPlayerCamera;
-        else
-            activeCamera = DeathCamera;
-
-        SwitchCamera(activeCamera);
+            SwitchCamera(activeCamera);
+        }
     }
 
     private void SwitchCamera(GameObject newCamera)
     {
-        // 全カメラを無効化し、選択したカメラを有効化
         MyPlayerCamera.SetActive(false);
         DeathCamera.SetActive(false);
         newCamera.SetActive(true);
