@@ -26,7 +26,10 @@ public class AfterThrow : MonoBehaviour
         // Bボタンでフリスビー戻す
         if (OVRInput.GetDown(OVRInput.RawButton.B))
         {
-            ReturnFrisbee();
+            if (GameManager.instance.State == FrisbeeState.Fly)
+            {
+                ReturnFrisbee();
+            }
         }
     }
 
@@ -44,23 +47,21 @@ public class AfterThrow : MonoBehaviour
         if (GameManager.instance.State == FrisbeeState.Fly ||
             GameManager.instance.State == FrisbeeState.GetItem)
         {
-            //TP可能な床か調べる
-         //   if (Physics.Raycast(gameObject.transform.position, Vector3.down, out _hit, 1.0f))
-          //  {}
-                if (other.gameObject.CompareTag("CanTP"))
-                {
-                    Teleport(_cameraRig, gameObject.transform);
-                }
-                else
-                {
-                    Debug.Log("can`t TP");
+            //TP可能な床ならTP
+            if (other.gameObject.CompareTag("CanTP"))
+            {
+                Teleport(_cameraRig, gameObject.transform);
+            }
+            else
+            {
+                Debug.Log("can`t TP");
                     
-                    // 反射可能オブジェクトなら手元に戻さない
-                    if (other.gameObject.CompareTag("Reflective"))
-                        return;
+                // 反射可能オブジェクトなら手元に戻さない
+                if (other.gameObject.CompareTag("Reflective"))
+                    return;
 
-                    ReturnFrisbee();
-                }
+                ReturnFrisbee();
+            }
         }
     }
 

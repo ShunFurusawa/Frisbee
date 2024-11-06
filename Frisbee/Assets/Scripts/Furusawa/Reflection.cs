@@ -23,11 +23,10 @@ namespace Furusawa
             Vector3 inNormal =  other.contacts[0].normal;
             // 反射ベクトル（速度）
             Vector3 result = Vector3.Reflect(inDirection, inNormal);
-
-            Vector3.Scale(result, scalePower);
-            
+          
             // 反射後の速度を反映
-            _rb.velocity = result;
+            _rb.velocity = Vector3.Scale(result, scalePower);
+
             Debug.Log("reflection!");
         }
     }

@@ -10,7 +10,7 @@ public class ThrowFrisbee : MonoBehaviour
 {
    public XRNode node;
 
-   public bool tracked = false; //データ取得可能か
+   [SerializeField] bool beforeVer = false; //フリスビーの飛ばし方
    private Vector3 _velocity; // 速度
 
     [Header("フリスビーは加速度を〇倍した速度で飛ぶ")]
@@ -42,9 +42,9 @@ public class ThrowFrisbee : MonoBehaviour
             {
                 if (s.nodeType == node)
                 {
-                    tracked = s.tracked;
+                 //   tracked = s.tracked;
                     s.TryGetVelocity(out _velocity);
-                
+                    Debug.Log(_velocity);
                     // s.TryGetAcceleration();   前回加速度の取得できなかったきがする
                     break;
                 }
@@ -101,10 +101,16 @@ public class ThrowFrisbee : MonoBehaviour
     {
         //Frisbee飛ばす処理
         _velocity = Vector3.Scale(_velocity,  controlPower);
-        
-       // m_RB.AddForce(m_velocity, ForceMode.Impulse);
-       
-       _RB.velocity = AdjustVelocity(_velocity);
+      
+       if (beforeVer)
+       {
+           _RB.velocity = _velocity;
+       }
+       else
+       {
+           _RB.velocity = AdjustVelocity(_velocity);
+       }
+   
     }
 
     private Vector3 AdjustVelocity(Vector3 velocity)
@@ -120,14 +126,14 @@ public class ThrowFrisbee : MonoBehaviour
             velocity =  Vector3.Scale(velocity, new Vector3(0f, 1f, 1f));
         }
 
-        if (maximum < velocity.y)
+        /*if (maximum < velocity.y)
         {
             maximum = velocity.y;
         }
         else
         {
             velocity = Vector3.Scale(velocity, new Vector3(1f, 0f, 1f));
-        }
+        }*/
 
         if (Mathf.Approximately(maximum, velocity.z))
         {

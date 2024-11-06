@@ -118,4 +118,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0635ab95c0074ead9e06f70ea677069f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scalePower: {x: 1, y: 1, z: 1}
+  scalePower: {x: 2, y: 2, z: 2}
