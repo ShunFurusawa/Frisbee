@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum FrisbeeState
 {
@@ -36,12 +37,18 @@ public class GameManager : MonoBehaviour
     {
         m_beforeState = currentState;
     }
-    
+
+    private void Update()
+    {
+        DebugInput();
+    }
+
     private void FixedUpdate()
     {
         DebugStateChange();
     }
 
+    private FrisbeeState currentState;
     private FrisbeeState m_beforeState;
     private void DebugStateChange()
     {
@@ -52,12 +59,24 @@ public class GameManager : MonoBehaviour
         
         m_beforeState = currentState;
     }
-
-    private FrisbeeState currentState;
+    
     public FrisbeeState State
     {
         get { return currentState; }
         set { currentState = value; }
     }
-  
+    
+    private void DebugInput()
+    {
+        // Yボタンでリスタート
+        if (OVRInput.GetDown(OVRInput.RawButton.Y))
+        {
+            Restart();
+        }
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }

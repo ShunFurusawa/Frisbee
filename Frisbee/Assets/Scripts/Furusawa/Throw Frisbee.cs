@@ -11,8 +11,9 @@ public class ThrowFrisbee : MonoBehaviour
    public XRNode node;
 
    public bool tracked = false; //データ取得可能か
-   public Vector3 _velocity; // 速度
+   private Vector3 _velocity; // 速度
 
+    [Header("フリスビーは加速度を〇倍した速度で飛ぶ")]
     [SerializeField] private Vector3 controlPower = default!;
   
     private List<XRNodeState> states;
@@ -51,7 +52,7 @@ public class ThrowFrisbee : MonoBehaviour
 
             if (OVRInput.GetUp(OVRInput.RawButton.RIndexTrigger))
             {
-                //Ready状態でTriggerの入力がなくなる = 投げ?
+                //Ready状態でTriggerの入力がなくなる = 投げ
                 GameManager.instance.State = FrisbeeState.Fly;
                 SetUpFrisbeeRB();
                 Throw();
@@ -116,7 +117,7 @@ public class ThrowFrisbee : MonoBehaviour
         }
         else
         {
-            Vector3.Scale(velocity, new Vector3(0f, 1f, 1f));
+            velocity =  Vector3.Scale(velocity, new Vector3(0f, 1f, 1f));
         }
 
         if (maximum < velocity.y)
@@ -125,7 +126,7 @@ public class ThrowFrisbee : MonoBehaviour
         }
         else
         {
-            Vector3.Scale(velocity, new Vector3(1f, 0f, 1f));
+            velocity = Vector3.Scale(velocity, new Vector3(1f, 0f, 1f));
         }
 
         if (Mathf.Approximately(maximum, velocity.z))
@@ -134,7 +135,7 @@ public class ThrowFrisbee : MonoBehaviour
         }
         else
         {
-            Vector3.Scale(velocity, new Vector3(1f, 1f, 0f));
+            velocity =  Vector3.Scale(velocity, new Vector3(1f, 1f, 0f));
             return velocity;
         }
     }

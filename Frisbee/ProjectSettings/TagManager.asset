@@ -9,6 +9,7 @@ TagManager:
   - CanTP
   - Wind
   - Fire
+  - Reflective
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - Obstacle
   - Frisbee
   - Player
-  - 
+  - Wall
   - 
   - 
   - 
