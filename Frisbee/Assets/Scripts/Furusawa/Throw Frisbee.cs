@@ -113,11 +113,17 @@ public class ThrowFrisbee : MonoBehaviour
    
     }
 
+    /// <summary>
+    /// X, Z軸について、加速度が大きい方を優先させる。Ｙはそのまま
+    /// </summary>
+    /// <param name="velocity">コントローラーの加速度</param>
+    /// <returns>優先度の低い軸の加速度は0</returns>
     private Vector3 AdjustVelocity(Vector3 velocity)
     {
-        float maximum = velocity.z;
+        //累乗で符号外して比較する
+        float maximum = Mathf.Pow(velocity.z, 2);
 
-        if (maximum < velocity.x)
+        if (maximum < Mathf.Pow(velocity.x, 2))
         {
             maximum = velocity.x;
         }
@@ -126,7 +132,7 @@ public class ThrowFrisbee : MonoBehaviour
             velocity =  Vector3.Scale(velocity, new Vector3(0f, 1f, 1f));
         }
 
-        /*if (maximum < velocity.y)
+        /*if (maximum < Mathf.Pow(velocity.y, 2))
         {
             maximum = velocity.y;
         }
@@ -135,7 +141,7 @@ public class ThrowFrisbee : MonoBehaviour
             velocity = Vector3.Scale(velocity, new Vector3(1f, 0f, 1f));
         }*/
 
-        if (Mathf.Approximately(maximum, velocity.z))
+        if (Mathf.Approximately(maximum, Mathf.Pow(velocity.z, 2)))
         {
             return velocity;   
         }
