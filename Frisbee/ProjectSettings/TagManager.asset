@@ -10,6 +10,7 @@ TagManager:
   - Wind
   - Fire
   - substance
+  - Rock
   layers:
   - Default
   - TransparentFX

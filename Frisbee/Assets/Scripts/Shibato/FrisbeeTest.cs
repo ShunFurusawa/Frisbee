@@ -1,24 +1,33 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace Shibato
 {
     public class FrisbeeTest : MonoBehaviour
     {
-        [SerializeField] [JapaneseLabel("プレイヤーカメラ")] private GameObject player;
-        [SerializeField] [JapaneseLabel("プレイヤーカメラ")] private float speed = 5f;
+        [SerializeField] [JapaneseLabel("プレイヤーカメラ")]
+        private GameObject player;
+
+        [SerializeField] [JapaneseLabel("移動速度")]
+        private float speed = 5f;
 
         [SerializeField] [JapaneseLabel("火のオブジェクト、エフェクト")]
         private GameObject fireGameObject;
 
         private PlayerCamera _camera;
         private Rigidbody _rb;
-
+        private const float CameraRemovalDelay = 1f;
+        private const float DestroyDelay = 2f;
         public bool FireElement { get; private set; }
 
         private void Awake()
         {
             _rb = transform.GetComponent<Rigidbody>();
+            if (player == null)
+                Debug.LogError($"[{nameof(FrisbeeTest)}] Player reference is not set!", this);
             _camera = player.gameObject.GetComponent<PlayerCamera>();
+            if (_camera == null)
+                Debug.LogError($"[{nameof(FrisbeeTest)}] PlayerCamera component not found on player!", this);
         }
 
         private void Update()
@@ -30,14 +39,17 @@ namespace Shibato
         {
             switch (other.gameObject.tag)
             {
-                case "Item":
+                case Tags.Item:
                     ItemCollision(other);
                     break;
-                case "spines":
+                case Tags.Spines:
                     SpinesCollision();
                     break;
-                case "Fire":
+                case Tags.Fire:
                     FireCollision();
+                    break;
+                case Tags.Rock:
+                    SpinesCollision();
                     break;
             }
         }
@@ -55,21 +67,37 @@ namespace Shibato
             _camera.MyDestroyed();
             Destroyanimetion();
         }
-
         private void FireCollision()
         {
             if (!FireElement)
             {
-                Instantiate(fireGameObject, transform.position, Quaternion.identity, transform);
-                FireElement = true;
+                var fireEffect = Instantiate(fireGameObject, transform.position, Quaternion.identity, transform);
+                if (fireEffect != null) FireElement = true;
             }
         }
 
         private void Destroyanimetion()
         {
-            Invoke("camera.RemoveCamera", 1);
-            //camera.RemoveCamera();
-            Destroy(gameObject, 2f);
+            if (_camera != null)
+                StartCoroutine(DestroySequence());
+            else
+                Destroy(gameObject);
+        }
+
+        private IEnumerator DestroySequence()
+        {
+            yield return new WaitForSeconds(CameraRemovalDelay);
+            _camera.RemoveCamera();
+            yield return new WaitForSeconds(DestroyDelay - CameraRemovalDelay);
+            Destroy(gameObject);
+        }
+
+        private static class Tags
+        {
+            public const string Item = "Item";
+            public const string Spines = "spines";
+            public const string Fire = "Fire";
+            public const string Rock = "Rock";
         }
     }
 }
