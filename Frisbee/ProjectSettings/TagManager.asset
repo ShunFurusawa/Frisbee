@@ -9,7 +9,8 @@ TagManager:
   - CanTP
   - Wind
   - Fire
-  - Reflective
+  - substance
+  - Rock
   layers:
   - Default
   - TransparentFX
