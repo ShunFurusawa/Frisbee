@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -20,7 +17,7 @@ public class GameManager : MonoBehaviour
    // [SerializeField] private FrisbeeState currentFrisbeeState;
     private void Awake()
     {
-        currentState = FrisbeeState.Have;
+        _currentState = FrisbeeState.Have;
 
         if (instance == null)
         {
@@ -35,7 +32,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        m_beforeState = currentState;
+        _beforeState = _currentState;
     }
 
     private void Update()
@@ -47,23 +44,29 @@ public class GameManager : MonoBehaviour
     {
         DebugStateChange();
     }
+    
+    private Vector3 _direction;
+    public Vector3 Directon
+    {
+        get { return _direction; }
+        set { _direction = value; }
+    }
 
-    private FrisbeeState currentState;
-    private FrisbeeState m_beforeState;
+    private FrisbeeState _currentState;
+    private FrisbeeState _beforeState;
     private void DebugStateChange()
     {
-        if (currentState != m_beforeState)
+        if (_currentState != _beforeState)
         {
-            Debug.Log("state change " + m_beforeState + "->" + currentState);
+            Debug.Log("state change " + _beforeState + "->" + _currentState);
         }
-        
-        m_beforeState = currentState;
+        _beforeState = _currentState;
     }
     
     public FrisbeeState State
     {
-        get { return currentState; }
-        set { currentState = value; }
+        get { return _currentState; }
+        set { _currentState = value; }
     }
     
     private void DebugInput()

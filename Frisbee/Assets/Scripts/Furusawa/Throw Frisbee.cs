@@ -34,6 +34,13 @@ public class ThrowFrisbee : MonoBehaviour
         CheckVelocity();
     }
 
+    public Vector3 Velocity
+    {
+        get { return _velocity; }
+
+        set { _velocity = value; }
+    }
+
     private void CheckVelocity()
     {
         if (GameManager.instance.State == FrisbeeState.Ready)
@@ -101,6 +108,8 @@ public class ThrowFrisbee : MonoBehaviour
     {
         //Frisbee飛ばす処理
         _velocity = Vector3.Scale(_velocity,  controlPower);
+
+        Vector3 direction = GameManager.instance.Directon;
       
        if (beforeVer)
        {
@@ -108,9 +117,10 @@ public class ThrowFrisbee : MonoBehaviour
        }
        else
        {
-           _RB.velocity = AdjustVelocity(_velocity);
+           _velocity = AdjustVelocity(_velocity);
+           
+           _RB.velocity = Vector3.Scale(direction, _velocity);
        }
-   
     }
 
     /// <summary>
