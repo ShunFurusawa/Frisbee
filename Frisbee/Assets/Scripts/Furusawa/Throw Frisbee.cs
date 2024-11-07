@@ -10,9 +10,10 @@ public class ThrowFrisbee : MonoBehaviour
 {
    public XRNode node;
 
-   public bool tracked = false; //データ取得可能か
-   public Vector3 _velocity; // 速度
+   [SerializeField] bool beforeVer = false; //フリスビーの飛ばし方
+   private Vector3 _velocity; // 速度
 
+    [Header("フリスビーは加速度を〇倍した速度で飛ぶ")]
     [SerializeField] private Vector3 controlPower = default!;
   
     private List<XRNodeState> states;
@@ -41,9 +42,9 @@ public class ThrowFrisbee : MonoBehaviour
             {
                 if (s.nodeType == node)
                 {
-                    tracked = s.tracked;
+                 //   tracked = s.tracked;
                     s.TryGetVelocity(out _velocity);
-                
+                    Debug.Log(_velocity);
                     // s.TryGetAcceleration();   前回加速度の取得できなかったきがする
                     break;
                 }
@@ -51,7 +52,7 @@ public class ThrowFrisbee : MonoBehaviour
 
             if (OVRInput.GetUp(OVRInput.RawButton.RIndexTrigger))
             {
-                //Ready状態でTriggerの入力がなくなる = 投げ?
+                //Ready状態でTriggerの入力がなくなる = 投げ
                 GameManager.instance.State = FrisbeeState.Fly;
                 SetUpFrisbeeRB();
                 Throw();
@@ -100,41 +101,53 @@ public class ThrowFrisbee : MonoBehaviour
     {
         //Frisbee飛ばす処理
         _velocity = Vector3.Scale(_velocity,  controlPower);
-        
-       // m_RB.AddForce(m_velocity, ForceMode.Impulse);
-       
-       _RB.velocity = AdjustVelocity(_velocity);
+      
+       if (beforeVer)
+       {
+           _RB.velocity = _velocity;
+       }
+       else
+       {
+           _RB.velocity = AdjustVelocity(_velocity);
+       }
+   
     }
 
+    /// <summary>
+    /// X, Z軸について、加速度が大きい方を優先させる。Ｙはそのまま
+    /// </summary>
+    /// <param name="velocity">コントローラーの加速度</param>
+    /// <returns>優先度の低い軸の加速度は0</returns>
     private Vector3 AdjustVelocity(Vector3 velocity)
     {
-        float maximum = velocity.z;
+        //累乗で符号外して比較する
+        float maximum = Mathf.Pow(velocity.z, 2);
 
-        if (maximum < velocity.x)
+        if (maximum < Mathf.Pow(velocity.x, 2))
         {
             maximum = velocity.x;
         }
         else
         {
-            Vector3.Scale(velocity, new Vector3(0f, 1f, 1f));
+            velocity =  Vector3.Scale(velocity, new Vector3(0f, 1f, 1f));
         }
 
-        if (maximum < velocity.y)
+        /*if (maximum < Mathf.Pow(velocity.y, 2))
         {
             maximum = velocity.y;
         }
         else
         {
-            Vector3.Scale(velocity, new Vector3(1f, 0f, 1f));
-        }
+            velocity = Vector3.Scale(velocity, new Vector3(1f, 0f, 1f));
+        }*/
 
-        if (Mathf.Approximately(maximum, velocity.z))
+        if (Mathf.Approximately(maximum, Mathf.Pow(velocity.z, 2)))
         {
             return velocity;   
         }
         else
         {
-            Vector3.Scale(velocity, new Vector3(1f, 1f, 0f));
+            velocity =  Vector3.Scale(velocity, new Vector3(1f, 1f, 0f));
             return velocity;
         }
     }
