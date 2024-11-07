@@ -16,7 +16,7 @@ namespace Furusawa
             {
                 AssistLineLock();
             }
-            else if (_isLock && GameManager.instance.State != FrisbeeState.Ready)
+            else if (_isLock && GameManager.instance.State == FrisbeeState.Have)
             {
                 _isLock = false;
             }
