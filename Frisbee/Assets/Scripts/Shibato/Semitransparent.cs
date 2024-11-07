@@ -3,6 +3,7 @@
 //MaterialPropetyBlockを使うと同じマテリアルを使用している
 //複数のオブジェクトに対して、それぞれ独自のプロパティ値を設定できる
 
+//透かしたいオブジェクトにつける
 public class Semitransparent : MonoBehaviour
 {
     [SerializeField] private float alphaValue = 0.5f;
@@ -13,39 +14,37 @@ public class Semitransparent : MonoBehaviour
     //親 子オブジェクトを格納。
     private MeshRenderer[] meshRenderers;
 
-    //一つのマテリアルを共有していてもそれぞれ独自に設定をいじれる
-    public MaterialPropertyBlock mpb =>
-        //null の場合は右辺の値を返す。
-        m_mpb ?? (m_mpb = new MaterialPropertyBlock());
-
     private void Awake()
     {
         meshRenderers = GetComponentsInChildren<MeshRenderer>();
+        m_mpb = new MaterialPropertyBlock();
     }
 
     public void ClearMaterialInvoke()
     {
-        color.a = alphaValue;
+        var transparentColor = Color.white;
+        transparentColor.a = alphaValue;
 
-        mpb.SetColor(Shader.PropertyToID("_Color"), color);
-        for (var i = 0; i < meshRenderers.Length; i++)
-        {
-            meshRenderers[i].GetComponent<Renderer>().material.shader =
-                Shader.Find("Legacy Shaders/Transparent/Diffuse");
-            meshRenderers[i].SetPropertyBlock(mpb);
-        }
+        m_mpb.SetColor("_Color", transparentColor);
+        ApplyMaterialPropertyBlock(Shader.Find("Legacy Shaders/Transparent/Diffuse"));
     }
 
     public void NotClearMaterialInvoke()
     {
-        //元に戻す
-        color.a = 1f;
+        var opaqueColor = Color.white;
+        opaqueColor.a = 1f;
 
-        mpb.SetColor(Shader.PropertyToID("_Color"), color);
-        for (var i = 0; i < meshRenderers.Length; i++)
+        m_mpb.SetColor("_Color", opaqueColor);
+        ApplyMaterialPropertyBlock(Shader.Find("Standard"));
+    }
+
+    private void ApplyMaterialPropertyBlock(Shader shader)
+    {
+        foreach (var meshRenderer in meshRenderers)
         {
-            meshRenderers[i].GetComponent<Renderer>().material.shader = Shader.Find("Standard");
-            meshRenderers[i].SetPropertyBlock(mpb);
+            // シェーダーが異なる場合のみ変更
+            if (meshRenderer.sharedMaterial.shader != shader) meshRenderer.sharedMaterial.shader = shader;
+            meshRenderer.SetPropertyBlock(m_mpb);
         }
     }
 }

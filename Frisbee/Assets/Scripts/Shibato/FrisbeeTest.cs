@@ -1,47 +1,103 @@
-﻿using System;
+﻿using System.Collections;
 using UnityEngine;
 
 namespace Shibato
 {
-    public class FrisbeeTest:MonoBehaviour
+    public class FrisbeeTest : MonoBehaviour
     {
-        private Rigidbody rb;
-        public GameObject Player;
-        private PlayerCamera camera;
-        
-        private void Start()
+        [SerializeField] [JapaneseLabel("プレイヤーカメラ")]
+        private GameObject player;
+
+        [SerializeField] [JapaneseLabel("移動速度")]
+        private float speed = 5f;
+
+        [SerializeField] [JapaneseLabel("火のオブジェクト、エフェクト")]
+        private GameObject fireGameObject;
+
+        private PlayerCamera _camera;
+        private Rigidbody _rb;
+        private const float CameraRemovalDelay = 1f;
+        private const float DestroyDelay = 2f;
+        public bool FireElement { get; private set; }
+
+        private void Awake()
         {
-            rb = transform.GetComponent<Rigidbody>();
-            camera = Player.gameObject.GetComponent<PlayerCamera>();
+            _rb = transform.GetComponent<Rigidbody>();
+            if (player == null)
+                Debug.LogError($"[{nameof(FrisbeeTest)}] Player reference is not set!", this);
+            _camera = player.gameObject.GetComponent<PlayerCamera>();
+            if (_camera == null)
+                Debug.LogError($"[{nameof(FrisbeeTest)}] PlayerCamera component not found on player!", this);
         }
 
-        void Update()
+        private void Update()
         {
-            Vector3 force = new Vector3(1, 0, 0);
-            rb.AddForce(force, ForceMode.Force);
-            
+            _rb.velocity = new Vector3(speed, _rb.velocity.y, _rb.velocity.z);
         }
 
-        private void OnTriggerEnter(Collider collision)
+        private void OnTriggerEnter(Collider other)
         {
-            if (collision.gameObject.CompareTag("Item"))
+            switch (other.gameObject.tag)
             {
-                GameObject copiedObject =
-                    Instantiate(collision.gameObject, transform.position + Vector3.up, Quaternion.identity,this.transform);
-        
-                // コピーしたオブジェクトの見た目を同じにする
-                copiedObject.transform.localScale = collision.transform.localScale;
-                
-                Destroy(collision.gameObject);
+                case Tags.Item:
+                    ItemCollision(other);
+                    break;
+                case Tags.Spines:
+                    SpinesCollision();
+                    break;
+                case Tags.Fire:
+                    FireCollision();
+                    break;
+                case Tags.Rock:
+                    SpinesCollision();
+                    break;
             }
+        }
 
-            if (collision.gameObject.CompareTag("spines"))
+        private void ItemCollision(Collider item)
+        {
+            var copiedObject = Instantiate(item.gameObject, transform.position + Vector3.up, Quaternion.identity,
+                transform);
+            copiedObject.transform.localScale = item.transform.localScale;
+            Destroy(item.gameObject);
+        }
+
+        private void SpinesCollision()
+        {
+            _camera.MyDestroyed();
+            Destroyanimetion();
+        }
+        private void FireCollision()
+        {
+            if (!FireElement)
             {
-                //カメラを切り替え→壊れるアニメーション
-                camera.MyDestroyed();
-                
-                //Destroy(this.gameObject);
+                var fireEffect = Instantiate(fireGameObject, transform.position, Quaternion.identity, transform);
+                if (fireEffect != null) FireElement = true;
             }
+        }
+
+        private void Destroyanimetion()
+        {
+            if (_camera != null)
+                StartCoroutine(DestroySequence());
+            else
+                Destroy(gameObject);
+        }
+
+        private IEnumerator DestroySequence()
+        {
+            yield return new WaitForSeconds(CameraRemovalDelay);
+            _camera.RemoveCamera();
+            yield return new WaitForSeconds(DestroyDelay - CameraRemovalDelay);
+            Destroy(gameObject);
+        }
+
+        private static class Tags
+        {
+            public const string Item = "Item";
+            public const string Spines = "spines";
+            public const string Fire = "Fire";
+            public const string Rock = "Rock";
         }
     }
 }

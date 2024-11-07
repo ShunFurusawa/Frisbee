@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum FrisbeeState
 {
@@ -15,10 +17,10 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
     
-    [SerializeField] private FrisbeeState currentFrisbeeState;
+   // [SerializeField] private FrisbeeState currentFrisbeeState;
     private void Awake()
     {
-        State = FrisbeeState.Have;
+        currentState = FrisbeeState.Have;
 
         if (instance == null)
         {
@@ -30,23 +32,51 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-    // Start is called before the first frame update
-    void Start()
+
+    private void Start()
     {
-        
+        m_beforeState = currentState;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        DebugInput();
     }
 
-    private FrisbeeState _state;
+    private void FixedUpdate()
+    {
+        DebugStateChange();
+    }
+
+    private FrisbeeState currentState;
+    private FrisbeeState m_beforeState;
+    private void DebugStateChange()
+    {
+        if (currentState != m_beforeState)
+        {
+            Debug.Log("state change " + m_beforeState + "->" + currentState);
+        }
+        
+        m_beforeState = currentState;
+    }
+    
     public FrisbeeState State
     {
-        get { return _state; }
-        set { _state = value; }
+        get { return currentState; }
+        set { currentState = value; }
     }
-  
+    
+    private void DebugInput()
+    {
+        // Yボタンでリスタート
+        if (OVRInput.GetDown(OVRInput.RawButton.Y))
+        {
+            Restart();
+        }
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }

@@ -7,17 +7,21 @@ TagManager:
   - Item
   - spines
   - CanTP
+  - Wind
+  - Fire
+  - substance
+  - Rock
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Floar
   - Water
   - UI
   - Obstacle
-  - 
-  - 
-  - 
+  - Frisbee
+  - Player
+  - Wall
   - 
   - 
   - 

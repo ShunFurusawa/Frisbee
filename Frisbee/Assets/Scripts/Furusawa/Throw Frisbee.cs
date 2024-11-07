@@ -8,20 +8,22 @@ using UnityEngine.XR;
 
 public class ThrowFrisbee : MonoBehaviour
 {
-    public XRNode node;
+   public XRNode node;
 
-    public bool tracked = false; //データ取得可能か
-    public Vector3 m_velocity; // 速度
+   [SerializeField] bool beforeVer = false; //フリスビーの飛ばし方
+   private Vector3 _velocity; // 速度
 
+    [Header("フリスビーは加速度を〇倍した速度で飛ぶ")]
     [SerializeField] private Vector3 controlPower = default!;
   
     private List<XRNodeState> states;
-    private Rigidbody m_RB;
+    private Rigidbody _RB;
     // Start is called before the first frame update
     void Start()
     {
         states = new List<XRNodeState>();
-        m_RB = gameObject.GetComponent<Rigidbody>();
+        _RB = gameObject.GetComponent<Rigidbody>();
+        FreezeRB(true);
     }
 
     // Update is called once per frame
@@ -40,9 +42,9 @@ public class ThrowFrisbee : MonoBehaviour
             {
                 if (s.nodeType == node)
                 {
-                    tracked = s.tracked;
-                    s.TryGetVelocity(out m_velocity);
-                
+                 //   tracked = s.tracked;
+                    s.TryGetVelocity(out _velocity);
+                    Debug.Log(_velocity);
                     // s.TryGetAcceleration();   前回加速度の取得できなかったきがする
                     break;
                 }
@@ -50,7 +52,7 @@ public class ThrowFrisbee : MonoBehaviour
 
             if (OVRInput.GetUp(OVRInput.RawButton.RIndexTrigger))
             {
-                //Ready状態でTriggerの入力がなくなる = 投げ?
+                //Ready状態でTriggerの入力がなくなる = 投げ
                 GameManager.instance.State = FrisbeeState.Fly;
                 SetUpFrisbeeRB();
                 Throw();
@@ -58,31 +60,103 @@ public class ThrowFrisbee : MonoBehaviour
         }
     }
 
+    private bool once;
     private void CheckReadyInput()
     {
         //フリスビーを持っている状態じゃなかったら入力取らない
         if (GameManager.instance.State != FrisbeeState.Have)
             return;
-        
+
+        if (_RB.freezeRotation == false)
+        {
+            FreezeRB(true);
+            gameObject.GetComponent<AfterThrow>().SetFrisbeeAtHand();
+        }
+       
         if (OVRInput.GetDown(OVRInput.RawButton.RIndexTrigger))
         {
             GameManager.instance.State = FrisbeeState.Ready;
         }
     }
 
+    /// <summary>
+    /// RotationとPositionのロック 持っている間だけ
+    /// </summary>
+    /// <param name="freeze">trueでロック falseで解除</param>
+    private void FreezeRB(bool freeze)
+    {
+        if (freeze)
+        {
+            _RB.constraints = RigidbodyConstraints.FreezePosition;
+            _RB.freezeRotation = true;
+        }
+        else
+        {
+            _RB.constraints = RigidbodyConstraints.None;
+            _RB.freezeRotation = false;
+        }
+    }
+
     private void Throw()
     {
         //Frisbee飛ばす処理
-        m_velocity = Vector3.Scale(m_velocity,  controlPower);
-        
-       // m_RB.AddForce(m_velocity, ForceMode.Impulse);
-       m_RB.velocity = m_velocity;
+        _velocity = Vector3.Scale(_velocity,  controlPower);
+      
+       if (beforeVer)
+       {
+           _RB.velocity = _velocity;
+       }
+       else
+       {
+           _RB.velocity = AdjustVelocity(_velocity);
+       }
+   
+    }
+
+    /// <summary>
+    /// X, Z軸について、加速度が大きい方を優先させる。Ｙはそのまま
+    /// </summary>
+    /// <param name="velocity">コントローラーの加速度</param>
+    /// <returns>優先度の低い軸の加速度は0</returns>
+    private Vector3 AdjustVelocity(Vector3 velocity)
+    {
+        //累乗で符号外して比較する
+        float maximum = Mathf.Pow(velocity.z, 2);
+
+        if (maximum < Mathf.Pow(velocity.x, 2))
+        {
+            maximum = velocity.x;
+        }
+        else
+        {
+            velocity =  Vector3.Scale(velocity, new Vector3(0f, 1f, 1f));
+        }
+
+        /*if (maximum < Mathf.Pow(velocity.y, 2))
+        {
+            maximum = velocity.y;
+        }
+        else
+        {
+            velocity = Vector3.Scale(velocity, new Vector3(1f, 0f, 1f));
+        }*/
+
+        if (Mathf.Approximately(maximum, Mathf.Pow(velocity.z, 2)))
+        {
+            return velocity;   
+        }
+        else
+        {
+            velocity =  Vector3.Scale(velocity, new Vector3(1f, 1f, 0f));
+            return velocity;
+        }
     }
 
     private void SetUpFrisbeeRB()
     {
         //重力on 親子付け解除　加速度デカくしたほうがよさそう
-        m_RB.useGravity = true;
+        _RB.useGravity = true;
         gameObject.transform.parent = null;
+        FreezeRB(false);
     }
 } 
