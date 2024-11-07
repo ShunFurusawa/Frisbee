@@ -32,7 +32,7 @@ namespace Shibato
 
         private void Update()
         {
-            _rb.velocity = new Vector3(speed, _rb.velocity.y, _rb.velocity.z);
+            //_rb.velocity = new Vector3(speed, _rb.velocity.y, _rb.velocity.z);
         }
 
         private void OnTriggerEnter(Collider other)

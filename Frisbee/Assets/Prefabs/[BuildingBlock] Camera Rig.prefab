@@ -2000,7 +2000,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockId: e47682b9-c270-40b1-b16d-90b627a5ce1b
-  instanceId: 7fb1b2c2-0068-46f5-abbf-e566bf8ab816
+  instanceId: 8e8b3c68-344e-4985-bec3-8a73ffd7dd5f
   version: 1
 --- !u!114 &1215626494982956963
 MonoBehaviour:
@@ -7180,6 +7180,7 @@ GameObject:
   - component: {fileID: 9121921153520509693}
   - component: {fileID: 1356158960107768523}
   - component: {fileID: 6227882907427771259}
+  - component: {fileID: 285259951920128093}
   m_Layer: 0
   m_Name: CenterEyeAnchor
   m_TagString: MainCamera
@@ -7261,6 +7262,24 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &285259951920128093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6613596315097888986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f12d051d1af43a4a9ad9c303b9add72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 4899528682813501778}
+  prevRaycast: []
+  raycastHitsList_: []
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &6650793520316738288
 GameObject:
   m_ObjectHideFlags: 0
@@ -7437,7 +7456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockId: 8b26b298-7bf4-490e-b245-a039c0184303
-  instanceId: dc5b9a6c-f121-485c-b91f-e2ee1171079c
+  instanceId: 59d73e20-8cc8-4bcb-b3c9-b7cefc2a386e
   version: 1
 --- !u!114 &8186591767621842574
 MonoBehaviour:
@@ -8051,7 +8070,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockId: 8b26b298-7bf4-490e-b245-a039c0184303
-  instanceId: f2ebc5d5-246b-414c-9535-ab128229513e
+  instanceId: 37b1912d-660f-49d2-b6d2-b56e4a96c988
   version: 1
 --- !u!114 &2474560958799651246
 MonoBehaviour:
@@ -10934,6 +10953,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c8fe0a8574199f44a7851209a59795d, type: 3}
+--- !u!1 &4899528682813501778 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9210741682833451940, guid: 7c8fe0a8574199f44a7851209a59795d, type: 3}
+  m_PrefabInstance: {fileID: 4336332720256080630}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8115145289976154061 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5526890942020377915, guid: 7c8fe0a8574199f44a7851209a59795d, type: 3}
