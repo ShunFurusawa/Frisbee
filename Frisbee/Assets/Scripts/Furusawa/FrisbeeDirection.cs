@@ -35,13 +35,14 @@ namespace Furusawa
         private Vector3 _start;
         private Vector3 _end;
 
-        private void LineRendering(Vector3 start, Vector3 end, float length)
+        private void LineRendering(Vector3 start, Vector3 end)
         {
-            _lineRenderer.SetPosition(0, _start);  // 始点
-            _lineRenderer.SetPosition(1, _direction * length);   // 終点
+            _lineRenderer.SetPosition(0, start);  // 始点
+            _lineRenderer.SetPosition(1, end);   // 終点
         }
-
-        [Header("Lineの長さ")] [SerializeField] private float length;
+        
+        // directionオブジェクトの位置ずらせばいいだけだった
+        // [Header("Lineの長さ")] [SerializeField] private float length;
         private void AssistLine()
         {
             if (_isLock)
@@ -55,13 +56,13 @@ namespace Furusawa
             _start = frisbee.position;
             _end = transform.position;
 
-            LineRendering(_start, _end, length);
+            LineRendering(_start, _end);
         }
         
         private bool _isLock;
         private void AssistLineLock()
         {
-            LineRendering(_start, _end, length);
+            LineRendering(_start, _end);
             
             if (_isLock == false)
             {
