@@ -799,9 +799,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 197604061206742568, guid: 07e9e479cf3153a4cac4b82ea621099a, type: 3}
+      propertyPath: upScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2000171639455669151, guid: 07e9e479cf3153a4cac4b82ea621099a, type: 3}
       propertyPath: m_Name
       value: '[BuildingBlock] Camera Rig'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5323107832311582963, guid: 07e9e479cf3153a4cac4b82ea621099a, type: 3}
+      propertyPath: moveSpeed
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

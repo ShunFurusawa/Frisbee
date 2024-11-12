@@ -104,8 +104,7 @@ public class AfterThrow : MonoBehaviour
 
     private Vector3 _direction;
     private Transform _target;
-    
-    [FormerlySerializedAs("_moveSpeed")]
+   
     [Header("フリスビーは〇fのスピードで手元に戻ってくる")]
     [SerializeField] private float moveSpeed = 5f;
         

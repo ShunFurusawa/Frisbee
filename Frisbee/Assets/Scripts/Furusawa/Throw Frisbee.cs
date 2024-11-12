@@ -18,15 +18,14 @@ public class ThrowFrisbee : MonoBehaviour
   
     private List<XRNodeState> states;
     private Rigidbody _RB;
-    // Start is called before the first frame update
+
     void Start()
     {
         states = new List<XRNodeState>();
         _RB = gameObject.GetComponent<Rigidbody>();
         FreezeRB(true);
     }
-
-    // Update is called once per frame
+   
     void Update()
     {
         InputTracking.GetNodeStates(states);
@@ -49,7 +48,6 @@ public class ThrowFrisbee : MonoBehaviour
             {
                 if (s.nodeType == node)
                 {
-                 //   tracked = s.tracked;
                     s.TryGetVelocity(out _velocity);
                     Debug.Log(_velocity);
                     // s.TryGetAcceleration();   前回加速度の取得できなかったきがする
@@ -66,8 +64,7 @@ public class ThrowFrisbee : MonoBehaviour
             }
         }
     }
-
-    private bool once;
+   
     private void CheckReadyInput()
     {
         //フリスビーを持っている状態じゃなかったら入力取らない
@@ -104,27 +101,29 @@ public class ThrowFrisbee : MonoBehaviour
         }
     }
 
+    [Header("フリスビーは上方向に〇fの力が加わる")]
+    [SerializeField] private float upScale;
+    /// <summary>
+    /// Frisbee飛ばす一連の処理
+    /// </summary>
     private void Throw()
     {
-        //Frisbee飛ばす処理
+      
         _velocity = Vector3.Scale(_velocity,  controlPower);
 
         Vector3 direction = GameManager.instance.Directon;
-      
-       if (beforeVer)
-       {
-           _RB.velocity = _velocity;
-       }
-       else
-       {
-           _velocity = AdjustVelocity(_velocity);
            
-           _RB.velocity = Vector3.Scale(direction, _velocity);
-       }
+        _velocity = AdjustVelocity(_velocity);
+           
+        //振る速度応じて上げたい
+        // _RB.velocity = Vector3.Scale(direction, _velocity);
+        _RB.velocity =　Vector3.Scale(direction, _velocity);
+        
+        _RB.AddForce(Vector3.up * upScale, ForceMode.Impulse);
     }
 
     /// <summary>
-    /// X, Z軸について、加速度が大きい方を優先させる。Ｙはそのまま
+    /// 振った速度に応じてフリスビーの加速度を変化させるためにコントローラーの加速度X, Z軸について、大きい方を優先させ、velocityを新たに計算
     /// </summary>
     /// <param name="velocity">コントローラーの加速度</param>
     /// <returns>優先度の低い軸の加速度は0</returns>
@@ -136,29 +135,17 @@ public class ThrowFrisbee : MonoBehaviour
         if (maximum < Mathf.Pow(velocity.x, 2))
         {
             maximum = velocity.x;
-        }
-        else
-        {
-            velocity =  Vector3.Scale(velocity, new Vector3(0f, 1f, 1f));
-        }
-
-        /*if (maximum < Mathf.Pow(velocity.y, 2))
-        {
-            maximum = velocity.y;
-        }
-        else
-        {
-            velocity = Vector3.Scale(velocity, new Vector3(1f, 0f, 1f));
-        }*/
-
-        if (Mathf.Approximately(maximum, Mathf.Pow(velocity.z, 2)))
-        {
+            
+            velocity = new Vector3(maximum, 1, maximum);
             return velocity;   
         }
         else
         {
-            velocity =  Vector3.Scale(velocity, new Vector3(1f, 1f, 0f));
-            return velocity;
+            //平方根で元に戻す
+            maximum = Mathf.Sqrt(maximum);
+            
+            velocity = new Vector3(maximum, 1, maximum);
+            return velocity;   
         }
     }
 
