@@ -34,7 +34,7 @@ public class AfterThrow : MonoBehaviour
         
         if (OVRInput.GetDown(OVRInput.RawButton.X))
         {
-            _cameraRig.position = GameManager.instance.SavePoint;
+            SaveRespawn();
         }
     }
 
@@ -165,5 +165,11 @@ public class AfterThrow : MonoBehaviour
         {
             _collider.enabled = true;
         }
+    }
+
+    public void SaveRespawn()
+    {
+        _cameraRig.position = GameManager.instance.SavePoint;
+        ReturnFrisbee();
     }
 }
