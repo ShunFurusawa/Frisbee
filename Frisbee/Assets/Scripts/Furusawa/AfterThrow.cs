@@ -8,7 +8,7 @@ public class AfterThrow : MonoBehaviour
 {
     private RaycastHit _hit;
     
-    private  Rigidbody _RB;
+    private  Rigidbody _rb;
     private BoxCollider _collider;
      [SerializeField] private Transform _cameraRig;
    
@@ -17,7 +17,7 @@ public class AfterThrow : MonoBehaviour
 
     private void Start()
     {
-        _RB = GetComponent<Rigidbody>();
+        _rb = GetComponent<Rigidbody>();
         _collider = GetComponent<BoxCollider>();
     }
 
@@ -56,7 +56,7 @@ public class AfterThrow : MonoBehaviour
             {
                 Debug.Log("can`t TP");
                     
-                // 反射可能オブジェクトなら手元に戻さない
+                // 反射可能オブジェクトなら手元に戻さない *注意:タグが認識されない可能性あり
                 if (other.gameObject.CompareTag("Reflective"))
                     return;
 
@@ -66,16 +66,12 @@ public class AfterThrow : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other)
-    {    //  Debug.Log("Trigger");
-           Debug.Log("state = " + GameManager.instance.State);
+    {   
         if (GameManager.instance.State == FrisbeeState.Return)
         {
-            Debug.Log("call State");
             if (other.gameObject.CompareTag("GameController"))
             {
-                Debug.Log("Tag");
                 SetFrisbeeAtHand();
-                Debug.Log("Return!");
             }
         }
     }
@@ -102,15 +98,15 @@ public class AfterThrow : MonoBehaviour
 
     private void SetVelocityToZero()
     {
-        _RB.velocity = Vector3.zero;
-        _RB.angularVelocity = Vector3.zero;
+        _rb.velocity = Vector3.zero;
+        _rb.angularVelocity = Vector3.zero;
     }
 
     private Vector3 _direction;
     private Transform _target;
-    
+   
     [Header("フリスビーは〇fのスピードで手元に戻ってくる")]
-    [SerializeField] private float _moveSpeed = 5f;
+    [SerializeField] private float moveSpeed = 5f;
         
     private void ReturnAddForce()
     {
@@ -119,7 +115,7 @@ public class AfterThrow : MonoBehaviour
 
        _target = _frisParent;
        _direction = (_target.position - transform.position).normalized;
-       _RB.AddForce(_direction * _moveSpeed);
+       _rb.AddForce(_direction * moveSpeed);
     }
 
     /// <summary>
@@ -130,11 +126,11 @@ public class AfterThrow : MonoBehaviour
         SetVelocityToZero();
         GameManager.instance.State = FrisbeeState.Return;
                     
-        if (GameManager.instance.State == FrisbeeState.Return)
+        /*if (GameManager.instance.State == FrisbeeState.Return)
         {
             Debug.Log("return state");
-        }
-        _RB.useGravity = false;
+        }*/
+        _rb.useGravity = false;
         gameObject.layer = LayerMask.NameToLayer("Frisbee");
     }
 
@@ -142,13 +138,11 @@ public class AfterThrow : MonoBehaviour
     {
         SetVelocityToZero();
         this.gameObject.transform.parent = _frisParent;
-        //this.gameObject.transform.position = new Vector3(0, 0, 0.2f);
         
         if (gameObject.transform.parent == _frisParent)
         {
             if (gameObject.layer == LayerMask.NameToLayer("Frisbee"))
             {
-               // Debug.Log("Layer");
                 gameObject.layer = LayerMask.NameToLayer("Default");
             } 
             
@@ -160,7 +154,7 @@ public class AfterThrow : MonoBehaviour
         }
         else
         {
-            Debug.Log("parent fail!");
+            Debug.LogAssertion("parent fail!");
         }
         if (_collider.enabled == false)
         {
