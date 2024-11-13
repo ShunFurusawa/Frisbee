@@ -31,6 +31,11 @@ public class AfterThrow : MonoBehaviour
                 ReturnFrisbee();
             }
         }
+        
+        if (OVRInput.GetDown(OVRInput.RawButton.X))
+        {
+            _cameraRig.position = GameManager.instance.SavePoint;
+        }
     }
 
     private void FixedUpdate()

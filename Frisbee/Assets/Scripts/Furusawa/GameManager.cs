@@ -82,4 +82,13 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
+    private Vector3 _savePoint;
+    public Vector3 SavePoint
+    {
+        get { return _savePoint; }
+        
+        set { _savePoint = value; }
+    }
+
 }
