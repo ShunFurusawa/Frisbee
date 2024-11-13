@@ -9,32 +9,33 @@ namespace Furusawa
         [SerializeField] private Vector3 scalePower;
         private Rigidbody _rb;
         private bool _wait;
+
+        private Vector3 inDirection; 
         private void OnCollisionEnter(Collision other)
         {
-            if (_wait)
+            if (_wait || other.gameObject.CompareTag("Reflective") == false)
                 return;
             
             if (_rb == null)
             {
-                _rb = other.gameObject.GetComponent<Rigidbody>();
+                _rb = gameObject.GetComponent<Rigidbody>();
             }
-
-            
+          
             // 入射ベクトル (速度）
-            Vector3 inDirection = _rb.velocity;
+            inDirection = GameManager.instance.Directon;
             // 法線ベクトル 接地点から取得
-            Vector3 inNormal =  other.contacts[0].normal;
-            Debug.Log("normal = " + other.contacts[0].normal);
-           //Vector3 inNormal =  Vector3.up;
+           // Vector3 inNormal =  other.contacts[0].normal;
+           Vector3 inNormal = other.contacts[0].normal;
+        
             // 反射ベクトル（速度）
-            inNormal = Vector3.Scale(inNormal, new Vector3(1f, 1f, 1f));
             Vector3 result = Vector3.Reflect(inDirection, inNormal);
+        
+            _rb.velocity = Vector3.zero;
         
             // 反射後の速度を反映
             _rb.velocity = Vector3.Scale(result, scalePower);
+            
             StartCoroutine("WaitAndReflective");
-            Debug.Log("reflection!");
-         
         }
 
         //OnCollisionが何度も起きないように待機時間入れてみる
