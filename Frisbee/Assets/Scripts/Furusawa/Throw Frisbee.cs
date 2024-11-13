@@ -136,7 +136,7 @@ public class ThrowFrisbee : MonoBehaviour
         {
             maximum = velocity.x;
             
-            velocity = new Vector3(maximum, 1, maximum);
+            velocity = new Vector3(maximum, maximum, maximum);
             return velocity;   
         }
         else
@@ -144,7 +144,7 @@ public class ThrowFrisbee : MonoBehaviour
             //平方根で元に戻す
             maximum = Mathf.Sqrt(maximum);
             
-            velocity = new Vector3(maximum, 1, maximum);
+            velocity = new Vector3(maximum, maximum, maximum);
             return velocity;   
         }
     }
