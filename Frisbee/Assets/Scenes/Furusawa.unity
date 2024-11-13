@@ -528,8 +528,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 35346259125161070, guid: d32ebb599094c9942819d8b49b205954, type: 3}
-      propertyPath: scalePower.z
+      propertyPath: scalePower.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 35346259125161070, guid: d32ebb599094c9942819d8b49b205954, type: 3}
+      propertyPath: scalePower.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 35346259125161070, guid: d32ebb599094c9942819d8b49b205954, type: 3}
+      propertyPath: scalePower.z
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3538665454531459160, guid: d32ebb599094c9942819d8b49b205954, type: 3}
       propertyPath: m_LocalPosition.x
@@ -799,17 +807,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 197604061206742568, guid: 07e9e479cf3153a4cac4b82ea621099a, type: 3}
-      propertyPath: controlPower.y
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 2000171639455669151, guid: 07e9e479cf3153a4cac4b82ea621099a, type: 3}
       propertyPath: m_Name
       value: '[BuildingBlock] Camera Rig'
-      objectReference: {fileID: 0}
-    - target: {fileID: 7628519482548074004, guid: 07e9e479cf3153a4cac4b82ea621099a, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.57
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
