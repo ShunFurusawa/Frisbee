@@ -527,21 +527,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 35346259125161070, guid: d32ebb599094c9942819d8b49b205954, type: 3}
-      propertyPath: scalePower.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 35346259125161070, guid: d32ebb599094c9942819d8b49b205954, type: 3}
-      propertyPath: scalePower.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 35346259125161070, guid: d32ebb599094c9942819d8b49b205954, type: 3}
-      propertyPath: scalePower.z
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 3538665454531459160, guid: d32ebb599094c9942819d8b49b205954, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.55
+      value: 8.07
       objectReference: {fileID: 0}
     - target: {fileID: 3538665454531459160, guid: d32ebb599094c9942819d8b49b205954, type: 3}
       propertyPath: m_LocalPosition.y
@@ -593,6 +581,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4899528682813501778, guid: 07e9e479cf3153a4cac4b82ea621099a, type: 3}
   m_PrefabInstance: {fileID: 2712182403816482913}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1754283429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1754283420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0635ab95c0074ead9e06f70ea677069f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scalePower: {x: 10, y: 3, z: 10}
 --- !u!1001 &1845118018
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -811,6 +812,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[BuildingBlock] Camera Rig'
       objectReference: {fileID: 0}
+    - target: {fileID: 5697198732476436037, guid: 07e9e479cf3153a4cac4b82ea621099a, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: f4e33826cbbc67d498d9e0e2186d255c, type: 2}
     - target: {fileID: 6210643952259682699, guid: 07e9e479cf3153a4cac4b82ea621099a, type: 3}
       propertyPath: player
       value: 
@@ -818,7 +823,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4899528682813501778, guid: 07e9e479cf3153a4cac4b82ea621099a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1754283429}
   m_SourcePrefab: {fileID: 100100000, guid: 07e9e479cf3153a4cac4b82ea621099a, type: 3}
 --- !u!1001 &2855476982492398042
 PrefabInstance:
@@ -933,7 +941,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 35346259125161070, guid: d32ebb599094c9942819d8b49b205954, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
