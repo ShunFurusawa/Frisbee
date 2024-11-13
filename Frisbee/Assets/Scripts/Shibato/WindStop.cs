@@ -8,6 +8,10 @@ public class WindStop : MonoBehaviour
     [JapaneseLabel("初期設定")] [SerializeField]
     private bool windSwitch;
 
+    [JapaneseLabel("ONのマテリアル")][SerializeField] private Material ON;
+    [JapaneseLabel("OFFのマテリアル")][SerializeField] private Material OFF;
+    
+    private Renderer windRenderer;
     private void Awake()
     {
         if (windObject == null)
@@ -16,7 +20,7 @@ public class WindStop : MonoBehaviour
             enabled = false;
             return;
         }
-        
+        windRenderer = GetComponent<Renderer>();
         WindChange();
     }
 
@@ -31,6 +35,7 @@ public class WindStop : MonoBehaviour
 
     private void WindChange()
     {
+        windRenderer.material = windSwitch ? ON : OFF;
         windObject.SetActive(windSwitch);
     }
 }
