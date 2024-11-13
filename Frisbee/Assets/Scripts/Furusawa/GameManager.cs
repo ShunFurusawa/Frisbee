@@ -83,20 +83,12 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    /*
-    private Vector3 _indirection;
-    private Vector3 Indirection
-    {
-        get { return _indirection; }
-        set { _indirection = value; }
-    }
-    */
-
-    private Transform _savePoint;
-    public Transform SavePoint
+    private Vector3 _savePoint;
+    public Vector3 SavePoint
     {
         get { return _savePoint; }
         
         set { _savePoint = value; }
     }
+
 }
