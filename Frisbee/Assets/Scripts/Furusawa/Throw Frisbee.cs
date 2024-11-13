@@ -125,7 +125,7 @@ public class ThrowFrisbee : MonoBehaviour
     }
 
     /// <summary>
-    /// 振った速度に応じてフリスビーの加速度を変化させるためにコントローラーの加速度X, Z軸について、大きい方を優先させ、velocityを新たに計算
+    /// 振った速度に応じてフリスビーの加速度を変化させるためにコントローラーの加速度3軸について、大きい方を優先させ、velocityを新たに計算
     /// </summary>
     /// <param name="velocity">コントローラーの加速度</param>
     /// <returns>優先度の低い軸の加速度は0</returns>
@@ -137,18 +137,22 @@ public class ThrowFrisbee : MonoBehaviour
         if (maximum < Mathf.Pow(velocity.x, 2))
         {
             maximum = velocity.x;
-            
-            velocity = new Vector3(maximum, maximum, maximum);
-            return velocity;   
         }
-        else
+        
+        if (maximum < Mathf.Pow(velocity.y, 2))
+        {
+            maximum = velocity.y;
+        }
+        
+        if (Mathf.Approximately(maximum, Mathf.Pow(velocity.z, 2)))
         {
             //平方根で元に戻す
             maximum = Mathf.Sqrt(maximum);
-            
-            velocity = new Vector3(maximum, maximum, maximum);
-            return velocity;   
         }
+      
+        velocity = new Vector3(maximum, maximum, maximum);
+            
+        return velocity;   
     }
 
     private void SetUpFrisbeeRB()
