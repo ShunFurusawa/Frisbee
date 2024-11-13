@@ -34,7 +34,7 @@ namespace Furusawa
         
             // 反射後の速度を反映
             _rb.velocity = Vector3.Scale(result, scalePower);
-            
+            GameManager.instance.Directon = result.normalized;
             StartCoroutine("WaitAndReflective");
         }
 
@@ -42,7 +42,7 @@ namespace Furusawa
         private IEnumerator WaitAndReflective()
         {
             _wait = true;
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.1f);
             _wait = false;
         }
     }
