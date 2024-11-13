@@ -8,8 +8,8 @@ namespace Shibato
         [SerializeField] [JapaneseLabel("プレイヤーカメラ")]
         private GameObject player;
 
-        [SerializeField] [JapaneseLabel("移動速度")]
-        private float speed = 5f;
+        // [SerializeField] [JapaneseLabel("移動速度")]
+        // private float speed = 5f;
 
         [SerializeField] [JapaneseLabel("火のオブジェクト、エフェクト")]
         private GameObject fireGameObject;
