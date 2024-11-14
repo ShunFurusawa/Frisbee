@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: -1577073067109545091}
   m_Layer: 0
   m_Name: Frisbee
-  m_TagString: Player
+  m_TagString: Frisbee
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -152,6 +152,7 @@ MonoBehaviour:
   node: 5
   beforeVer: 0
   controlPower: {x: 10, y: 2, z: 10}
+  upScale: 0
 --- !u!114 &8499073135286176261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,7 +167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cameraRig: {fileID: 0}
   _frisParent: {fileID: 0}
-  _moveSpeed: 3
+  moveSpeed: 5
 --- !u!114 &-1577073067109545091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,7 +181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2000171639455669151, guid: 07e9e479cf3153a4cac4b82ea621099a, type: 3}
-  speed: 5
+  gameManager: {fileID: 0}
   fireGameObject: {fileID: 5523813300628688629, guid: 2cc2a863427c24a44a670fb7891e57db, type: 3}
 --- !u!1001 &5506059254415443178
 PrefabInstance:

@@ -2001,7 +2001,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockId: e47682b9-c270-40b1-b16d-90b627a5ce1b
-  instanceId: 8e8b3c68-344e-4985-bec3-8a73ffd7dd5f
+  instanceId: 65e1c92c-10a1-441a-a5c0-dcbadfffdd90
   version: 1
 --- !u!114 &1215626494982956963
 MonoBehaviour:
@@ -2636,7 +2636,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockId: 5817f7c0-f2a5-45f9-a5ca-64264e0166e8
-  instanceId: 4c074f83-2bf6-4e9f-a308-74d6db80d310
+  instanceId: 3f45786b-b8e8-48a2-9eea-fe657f1cacb5
   version: 1
 --- !u!114 &3939586369553652982
 MonoBehaviour:
@@ -3791,7 +3791,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockId: 5817f7c0-f2a5-45f9-a5ca-64264e0166e8
-  instanceId: dc99dad3-a13c-4d8e-9688-4feb360ebf92
+  instanceId: 937a08d9-30b5-4bfa-921c-d5e6deb8ae40
   version: 1
 --- !u!114 &180509530479613719
 MonoBehaviour:
@@ -7620,7 +7620,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockId: 8b26b298-7bf4-490e-b245-a039c0184303
-  instanceId: 59d73e20-8cc8-4bcb-b3c9-b7cefc2a386e
+  instanceId: 4a546328-160c-4376-8530-81222570cc70
   version: 1
 --- !u!114 &8186591767621842574
 MonoBehaviour:
@@ -8234,7 +8234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockId: 8b26b298-7bf4-490e-b245-a039c0184303
-  instanceId: 37b1912d-660f-49d2-b6d2-b56e4a96c988
+  instanceId: 8520d216-5bd9-4da2-b9e2-b269aab068ec
   version: 1
 --- !u!114 &2474560958799651246
 MonoBehaviour:
@@ -11060,6 +11060,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 2000171639455669151}
+    - target: {fileID: -1577073067109545091, guid: 7c8fe0a8574199f44a7851209a59795d, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 3153735085271485672, guid: 4bd0f96c4b836e84096f7da4df3c7059, type: 3}
     - target: {fileID: 4509150488614362334, guid: 7c8fe0a8574199f44a7851209a59795d, type: 3}
       propertyPath: upScale
       value: 1
