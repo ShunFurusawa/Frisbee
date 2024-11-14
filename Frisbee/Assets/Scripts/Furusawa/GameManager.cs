@@ -13,7 +13,8 @@ public enum FrisbeeState
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
-    
+
+    [SerializeField] private AfterThrow afterThrow;
    // [SerializeField] private FrisbeeState currentFrisbeeState;
     private void Awake()
     {
@@ -91,4 +92,8 @@ public class GameManager : MonoBehaviour
         set { _savePoint = value; }
     }
 
+    public void Respawn()
+    {
+        afterThrow.SaveRespawn();
+    }
 }
