@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6146181617788717768}
   - component: {fileID: 4933767931870257313}
   m_Layer: 0
-  m_Name: Rock
+  m_Name: TentativeRock
   m_TagString: Rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
