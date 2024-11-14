@@ -8,8 +8,10 @@ namespace Shibato
         [SerializeField] [JapaneseLabel("プレイヤーカメラ")]
         private GameObject player;
 
-        [SerializeField] [JapaneseLabel("移動速度")]
-        private float speed = 5f;
+        [SerializeField] private GameManager gameManager;
+        
+        // [SerializeField] [JapaneseLabel("移動速度")]
+        // private float speed = 5f;
 
         [SerializeField] [JapaneseLabel("火のオブジェクト、エフェクト")]
         private GameObject fireGameObject;
@@ -18,6 +20,7 @@ namespace Shibato
         private Rigidbody _rb;
         private const float CameraRemovalDelay = 1f;
         private const float DestroyDelay = 2f;
+        
         public bool FireElement { get; private set; }
 
         private void Awake()
@@ -32,7 +35,7 @@ namespace Shibato
 
         private void Update()
         {
-            _rb.velocity = new Vector3(speed, _rb.velocity.y, _rb.velocity.z);
+            //_rb.velocity = new Vector3(speed, _rb.velocity.y, _rb.velocity.z);
         }
 
         private void OnTriggerEnter(Collider other)
@@ -64,8 +67,9 @@ namespace Shibato
 
         private void SpinesCollision()
         {
-            _camera.MyDestroyed();
-            Destroyanimetion();
+            //_camera.MyDestroyed();
+            //Destroyanimetion();
+             gameManager.Respawn();
         }
         private void FireCollision()
         {

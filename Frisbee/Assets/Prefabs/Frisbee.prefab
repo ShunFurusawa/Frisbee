@@ -15,9 +15,10 @@ GameObject:
   - component: {fileID: 2194239212139934641}
   - component: {fileID: 4509150488614362334}
   - component: {fileID: 8499073135286176261}
+  - component: {fileID: -1577073067109545091}
   m_Layer: 0
   m_Name: Frisbee
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34,7 +35,8 @@ Transform:
   m_LocalPosition: {x: -32.4, y: -17.797956, z: -7.6805425}
   m_LocalScale: {x: 0.29206452, y: 0.049981, z: 0.29206452}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1944546522794292854}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &702901462180792688
@@ -148,7 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   node: 5
-  tracked: 0
+  beforeVer: 0
   controlPower: {x: 10, y: 2, z: 10}
 --- !u!114 &8499073135286176261
 MonoBehaviour:
@@ -165,3 +167,80 @@ MonoBehaviour:
   _cameraRig: {fileID: 0}
   _frisParent: {fileID: 0}
   _moveSpeed: 3
+--- !u!114 &-1577073067109545091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9210741682833451940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 246fe5c0d5764bf1aa7230f1eedb2178, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 2000171639455669151, guid: 07e9e479cf3153a4cac4b82ea621099a, type: 3}
+  speed: 5
+  fireGameObject: {fileID: 5523813300628688629, guid: 2cc2a863427c24a44a670fb7891e57db, type: 3}
+--- !u!1001 &5506059254415443178
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5526890942020377915}
+    m_Modifications:
+    - target: {fileID: 6238920873654399644, guid: 1135d717b3eab454f9050603c647ca3b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 6238920873654399644, guid: 1135d717b3eab454f9050603c647ca3b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 6238920873654399644, guid: 1135d717b3eab454f9050603c647ca3b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6238920873654399644, guid: 1135d717b3eab454f9050603c647ca3b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.64085644
+      objectReference: {fileID: 0}
+    - target: {fileID: 6238920873654399644, guid: 1135d717b3eab454f9050603c647ca3b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.29883623
+      objectReference: {fileID: 0}
+    - target: {fileID: 6238920873654399644, guid: 1135d717b3eab454f9050603c647ca3b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.64085644
+      objectReference: {fileID: 0}
+    - target: {fileID: 6238920873654399644, guid: 1135d717b3eab454f9050603c647ca3b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.29883623
+      objectReference: {fileID: 0}
+    - target: {fileID: 6238920873654399644, guid: 1135d717b3eab454f9050603c647ca3b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6238920873654399644, guid: 1135d717b3eab454f9050603c647ca3b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6238920873654399644, guid: 1135d717b3eab454f9050603c647ca3b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7551052734444251549, guid: 1135d717b3eab454f9050603c647ca3b, type: 3}
+      propertyPath: m_Name
+      value: '[BuildingBlock] DeathCamera Rig'
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1135d717b3eab454f9050603c647ca3b, type: 3}
+--- !u!4 &1944546522794292854 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6238920873654399644, guid: 1135d717b3eab454f9050603c647ca3b, type: 3}
+  m_PrefabInstance: {fileID: 5506059254415443178}
+  m_PrefabAsset: {fileID: 0}
