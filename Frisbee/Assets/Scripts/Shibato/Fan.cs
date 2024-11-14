@@ -31,7 +31,7 @@ namespace Shibato
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Player"))
+            if (other.CompareTag("Frisbee"))
             {
                 var rb = other.GetComponent<Rigidbody>();
                 if (rb != null)

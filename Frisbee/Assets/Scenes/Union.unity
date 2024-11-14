@@ -2457,7 +2457,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4899528682813501778, guid: 07e9e479cf3153a4cac4b82ea621099a, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Frisbee
       objectReference: {fileID: 0}
     - target: {fileID: 6210643952259682699, guid: 07e9e479cf3153a4cac4b82ea621099a, type: 3}
       propertyPath: gameManager
