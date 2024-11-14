@@ -25,7 +25,7 @@ namespace Furusawa
         {
             foreach (IgniteTorch torch in Torches)
             {
-                torch.Ignite();
+                torch.StartCoroutine("DelayIgnite");
             }
         }
     }
