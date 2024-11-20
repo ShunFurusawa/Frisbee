@@ -13,6 +13,12 @@ namespace Shibato
             {
                floor.SetActive(true); 
             }
+
+            if (other.CompareTag("Player"))
+            {
+                var rb = other.gameObject.GetComponent<Rigidbody>();
+                rb.useGravity = false;
+            }
         }
     }
 }
