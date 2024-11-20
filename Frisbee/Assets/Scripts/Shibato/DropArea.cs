@@ -30,7 +30,7 @@ namespace Shibato
 
         void OnTriggerEnter(Collider other)
         {
-            if (!isWobbling && !hasFallen && other.CompareTag("substance"))
+            if (!isWobbling && !hasFallen && other.CompareTag("Frisbee"))
             {
                 StartCoroutine(WobbleAndFallCoroutine());
             }
