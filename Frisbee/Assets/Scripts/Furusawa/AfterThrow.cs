@@ -34,7 +34,7 @@ public class AfterThrow : MonoBehaviour
         
         if (OVRInput.GetDown(OVRInput.RawButton.X))
         {
-            SaveRespawn();
+            RespawnProcess();
         }
     }
 
@@ -167,9 +167,9 @@ public class AfterThrow : MonoBehaviour
         }
     }
 
-    public void SaveRespawn()
+    public void RespawnProcess()
     {
         _cameraRig.position = GameManager.instance.SavePoint;
-        ReturnFrisbee();
+        SetFrisbeeAtHand();
     }
 }
