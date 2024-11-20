@@ -18,8 +18,6 @@ public class GameManager : MonoBehaviour
    // [SerializeField] private FrisbeeState currentFrisbeeState;
     private void Awake()
     {
-        _currentState = FrisbeeState.Have;
-
         if (instance == null)
         {
             instance = this;
@@ -34,6 +32,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         _beforeState = _currentState;
+        _currentState = FrisbeeState.Have;
     }
 
     private void Update()
@@ -82,6 +81,7 @@ public class GameManager : MonoBehaviour
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        State = FrisbeeState.Have;
     }
 
     private Vector3 _savePoint;
@@ -94,6 +94,7 @@ public class GameManager : MonoBehaviour
 
     public void Respawn()
     {
-        afterThrow.SaveRespawn();
+        afterThrow.RespawnProcess();
+        State = FrisbeeState.Have;
     }
 }
