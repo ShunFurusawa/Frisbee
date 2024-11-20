@@ -2256,6 +2256,7 @@ GameObject:
   - component: {fileID: 7628519482548074004}
   - component: {fileID: 4813635418827004264}
   - component: {fileID: 7469170307427800100}
+  - component: {fileID: 8171796527801898943}
   m_Layer: 0
   m_Name: Direction
   m_TagString: Untagged
@@ -2272,7 +2273,7 @@ Transform:
   m_GameObject: {fileID: 2291278928111176893}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.15, y: 0, z: 6}
+  m_LocalPosition: {x: 1.4, y: 0, z: 4.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2395,6 +2396,20 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!114 &8171796527801898943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2291278928111176893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29eb2be2abc74a92948874306c5899f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  centerObj: {fileID: 4899528682813501778}
+  angle: 75
 --- !u!1 &2295499554122645659
 GameObject:
   m_ObjectHideFlags: 0
