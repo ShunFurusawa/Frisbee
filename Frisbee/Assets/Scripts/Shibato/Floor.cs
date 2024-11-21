@@ -1,4 +1,5 @@
 ﻿using System;
+using Unity.VisualScripting;
 using UnityEngine;
 namespace Shibato
 {
@@ -7,18 +8,33 @@ namespace Shibato
         [SerializeField, JapaneseLabel("出現させる床")]
         private GameObject floor;
 
-        private void OnTriggerEnter(Collider other)
+        [SerializeField, JapaneseLabel("出現させる壁")]
+        private GameObject wall;
+        private void OnCollisionEnter(Collision other)
         {
-            if (other.CompareTag("Frisbee"))
+            if (other.gameObject.CompareTag("Frisbee"))
             {
-               floor.SetActive(true); 
+                floor.SetActive(true);
+                wall.SetActive(false);
             }
+        }
 
-            if (other.CompareTag("Player"))
+        void OnTriggerEnter(Collider other)
             {
-                var rb = other.gameObject.GetComponent<Rigidbody>();
-                rb.useGravity = false;
+                if (other.gameObject.CompareTag("Player"))
+                {
+                    var rb = other.gameObject.GetComponent<Rigidbody>();
+                    if (rb != null)
+                    {
+                        Debug.Log("Destroying Rigidbody...");
+                        rb.isKinematic = true; // Optional: Stop physics before destroying.
+                        Destroy(rb);
+                    }
+                    else
+                    {
+                        Debug.Log("Rigidbody not found.");
+                    }
+                }
             }
         }
     }
-}

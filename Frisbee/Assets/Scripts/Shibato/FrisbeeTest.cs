@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using TMPro;
 
 namespace Shibato
 {
@@ -61,7 +62,7 @@ namespace Shibato
         {
             var copiedObject = Instantiate(item.gameObject, transform.position + Vector3.up, Quaternion.identity,
                 transform);
-            copiedObject.transform.localScale = item.transform.localScale;
+            //copiedObject.transform.localScale = item.transform.localScale;
             Destroy(item.gameObject);
         }
 
