@@ -26,7 +26,7 @@ public class WindStop : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Frisbee"))
         {
             windSwitch = !windSwitch;
             WindChange();

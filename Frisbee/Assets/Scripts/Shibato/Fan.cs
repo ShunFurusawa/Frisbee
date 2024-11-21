@@ -21,6 +21,7 @@ namespace Shibato
         [JapaneseLabel("風の向き")] [SerializeField]
         private Direction direction;
 
+        [JapaneseLabel("減速"), SerializeField] private float speedDawn =0.5f;
         private readonly Dictionary<Collider, Rigidbody> cachedRigidbodies = new();
         private Vector3 windDirection = Vector3.up;
 
@@ -31,7 +32,7 @@ namespace Shibato
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Player"))
+            if (other.CompareTag("Frisbee"))
             {
                 var rb = other.GetComponent<Rigidbody>();
                 if (rb != null)
@@ -57,6 +58,7 @@ namespace Shibato
             {
                 var lift = windDirection * liftForce;
                 rb.AddForce(lift, ForceMode.Acceleration);
+                rb.velocity *= speedDawn;
             }
         }
 

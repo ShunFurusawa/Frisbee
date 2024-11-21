@@ -83,6 +83,8 @@ public class AfterThrow : MonoBehaviour
 
     private void Teleport(Transform tpObj, Transform tpPoint)
     {
+        //tpObj.position = tpPoint.position;
+        tpPoint.position= new Vector3(tpPoint.position.x, tpPoint.position.y+1, tpPoint.position.z);
         tpObj.position = tpPoint.position;
 
         if (tpPoint.position == tpObj.position)

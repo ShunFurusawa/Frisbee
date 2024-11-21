@@ -12,12 +12,16 @@ namespace Shibato
         private bool isWobbling = false;
         private Vector3 initialPosition;
         private Rigidbody rb;
+        private BoxCollider boxCollider;
+
+        [SerializeField, JapaneseLabel("プレイヤーのオブジェクト")]
+        private Rigidbody playerRigidbody;
 
         void Start()
         {
             initialPosition = transform.position;
             rb = GetComponent<Rigidbody>();
-            
+            boxCollider = GetComponent<BoxCollider>();
             if (rb == null)
             {
                 rb = gameObject.AddComponent<Rigidbody>();
@@ -30,7 +34,7 @@ namespace Shibato
 
         void OnTriggerEnter(Collider other)
         {
-            if (!isWobbling && !hasFallen && other.CompareTag("substance"))
+            if (!isWobbling && !hasFallen && other.CompareTag("Frisbee"))
             {
                 StartCoroutine(WobbleAndFallCoroutine());
             }
@@ -59,6 +63,8 @@ namespace Shibato
             // 落下させる
             rb.isKinematic = false;
             rb.useGravity = true;
+            boxCollider.isTrigger = true;
+            playerRigidbody.useGravity = true;
             hasFallen = true;
             isWobbling = false;
         }

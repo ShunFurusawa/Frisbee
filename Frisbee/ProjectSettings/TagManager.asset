@@ -11,6 +11,8 @@ TagManager:
   - Fire
   - substance
   - Rock
+  - Reflective
+  - Frisbee
   layers:
   - Default
   - TransparentFX
