@@ -80,8 +80,8 @@ public class GameManager : MonoBehaviour
 
     public void Restart()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        State = FrisbeeState.Have;
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        // State = FrisbeeState.Have;
     }
 
     private Vector3 _savePoint;

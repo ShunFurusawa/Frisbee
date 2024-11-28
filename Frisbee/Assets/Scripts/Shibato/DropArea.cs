@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 
 namespace Shibato
@@ -15,12 +16,15 @@ namespace Shibato
         private BoxCollider boxCollider;
 
         [SerializeField, JapaneseLabel("プレイヤーのオブジェクト")]
+        private GameObject player;
+
         private Rigidbody playerRigidbody;
 
         void Start()
         {
             initialPosition = transform.position;
             rb = GetComponent<Rigidbody>();
+            
             boxCollider = GetComponent<BoxCollider>();
             if (rb == null)
             {
@@ -32,9 +36,9 @@ namespace Shibato
 
         private bool hasFallen = false;
 
-        void OnTriggerEnter(Collider other)
+        private void OnCollisionEnter(Collision other)
         {
-            if (!isWobbling && !hasFallen && other.CompareTag("Frisbee"))
+            if (!isWobbling && !hasFallen && other.gameObject.CompareTag("Frisbee"))
             {
                 StartCoroutine(WobbleAndFallCoroutine());
             }
@@ -61,6 +65,11 @@ namespace Shibato
             yield return new WaitForSeconds(fallDelay);
 
             // 落下させる
+            playerRigidbody = player.gameObject.AddComponent<Rigidbody>();
+            playerRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+            playerRigidbody.constraints = RigidbodyConstraints.FreezePositionX;
+            playerRigidbody.constraints = RigidbodyConstraints.FreezePositionZ;
+            
             rb.isKinematic = false;
             rb.useGravity = true;
             boxCollider.isTrigger = true;
