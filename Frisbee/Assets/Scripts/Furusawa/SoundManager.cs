@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using System;
 using UnityEngine.Audio;
+using UnityEngine.Serialization;
 
 namespace Furusawa
 {
@@ -49,7 +50,7 @@ namespace Furusawa
         
         //AudioSource（スピーカー）を同時に鳴らしたい音の数だけ用意
         private AudioSource[] audioSourceList = new AudioSource[20];
-        private AudioMixerGroups _audioMixer;
+        [SerializeField] private AudioMixerGroups _audioMixerGroups;
 
         private void SetInstance()
         {
@@ -111,7 +112,7 @@ namespace Furusawa
             audioSource.volume = volume;
             audioSource.loop = true;
             audioSource.clip = bgm;
-            audioSource.outputAudioMixerGroup = _audioMixer.BGM;
+            audioSource.outputAudioMixerGroup = _audioMixerGroups.BGM;
             audioSource.Play();
         }
 
@@ -130,7 +131,7 @@ namespace Furusawa
             audioSource.playOnAwake = false;
             audioSource.loop = false;
             audioSource.clip = clip;
-            audioSource.outputAudioMixerGroup = _audioMixer.SE;
+            audioSource.outputAudioMixerGroup = _audioMixerGroups.SE;
             audioSource.PlayOneShot(clip);
         }
 
