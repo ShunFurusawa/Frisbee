@@ -6,7 +6,6 @@ namespace Shibato
     public class TpGate : MonoBehaviour
     {
         [SerializeField,JapaneseLabel("出口")] private Transform exitGate;
-        [SerializeField] private float exitVelocityMultiplier = 1.0f;
         private BoxCollider exitGateBoxCollider;
 
         private void Awake()
@@ -19,25 +18,28 @@ namespace Shibato
             Rigidbody rb = other.GetComponent<Rigidbody>();
             if (other.CompareTag("Frisbee"))
             {
+                
+                Vector3 entrancePosition = transform.position;
+                Vector3 exitPosition = exitGate.transform.position;
+                
                 exitGateBoxCollider.enabled = false;
                 // 入射ベクトルを保存
-                Vector3 incomingVelocity = rb.velocity;
+                Vector3 velocity = rb.velocity;
 
-                // 物体を出口に移動
-                other.transform.position = exitGate.position;
+                // 入った時の角度を計算
+                Vector3 direction = (other.transform.position - entrancePosition).normalized;
 
-                // 出口の方向を考慮して速度を設定
-                Vector3 exitDirection = exitGate.forward; // 出口の前方向
-                rb.velocity = exitDirection.normalized * incomingVelocity.magnitude * exitVelocityMultiplier;
+                // 出口での新しい位置と方向を設定
+                other.transform.position = exitPosition + direction * 1.0f;
+                rb.velocity = velocity; 
+                
                 StartCoroutine(ReEnableExitGate());
             }
         }
         private IEnumerator ReEnableExitGate()
         {
-            // 指定時間待機
             yield return new WaitForSeconds(10f);
-
-            // ExitGateの判定を復活
+            
             exitGateBoxCollider.enabled = true;
         }
     }
