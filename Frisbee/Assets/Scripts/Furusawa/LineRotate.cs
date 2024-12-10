@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Furusawa
 {
@@ -8,33 +9,26 @@ namespace Furusawa
     {
         [Header("回転の中心(フリスビー)")]
         [SerializeField] GameObject centerObj;
-        
-        [SerializeField][Range(0f, 100f)]  float angle = 50f;
+        [FormerlySerializedAs("angle")]
+        [Header("回転スピードの倍率")]
+        [SerializeField][Range(0f, 100f)]  float magnification = 50f;
 
-        private Vector2 _leftStickValue;
+        private Vector2 _rightStickValue;
         void Update ()
         {
             //左スティックの入力取得
-            _leftStickValue = OVRInput.Get(OVRInput.RawAxis2D.LThumbstick);
+            _rightStickValue = OVRInput.Get(OVRInput.RawAxis2D.RThumbstick);
 
-            Rotate(_leftStickValue);
+            RotateAround(_rightStickValue);
         }
 
-        private void Rotate(Vector2 vector)
+        private void RotateAround(Vector2 vector)
         {
-            if (vector == Vector2.zero)
-                return;
-            
-            // 左スティックを左に倒していたら左回転
-            if (vector.x < 0)
+            // 右スティックを左に倒していたら左回転
+            if (vector.x != 0)
             {
                 //RotateAround(中心の場所,軸,回転角度)
-                transform.RotateAround (centerObj.transform.position, Vector3.up, -angle * Time.deltaTime);
-            }
-            else if (vector.x > 0)
-            {
-                // 右回転
-                transform.RotateAround (centerObj.transform.position, Vector3.up, angle * Time.deltaTime);
+                transform.RotateAround (centerObj.transform.position, transform.up, vector.x * magnification * Time.deltaTime);
             }
         }
     }
