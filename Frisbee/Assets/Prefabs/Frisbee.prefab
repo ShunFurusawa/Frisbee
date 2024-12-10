@@ -164,7 +164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   centerObj: {fileID: 9210741682833451940}
-  angle: 75
+  magnification: 75
 --- !u!1 &9210741682833451940
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,7 +199,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -32.4, y: -17.797956, z: -7.6805425}
-  m_LocalScale: {x: 0.24, y: 0.04, z: 0.24}
+  m_LocalScale: {x: 0.3, y: 0.04, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1944546522794292854}
