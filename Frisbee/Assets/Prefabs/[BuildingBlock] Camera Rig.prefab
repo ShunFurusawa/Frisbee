@@ -2068,6 +2068,7 @@ GameObject:
   - component: {fileID: 6893152178819078041}
   - component: {fileID: 5190338637641010828}
   - component: {fileID: 5922374297102574306}
+  - component: {fileID: 3996319836819104583}
   m_Layer: 0
   m_Name: '[BuildingBlock] Camera Rig'
   m_TagString: Player
@@ -2105,7 +2106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockId: e47682b9-c270-40b1-b16d-90b627a5ce1b
-  instanceId: 3ce8757c-1644-4c11-847c-ea29ea23853e
+  instanceId: 21ecf6ae-ba16-475c-929e-6c81335d1215
   version: 1
 --- !u!114 &1215626494982956963
 MonoBehaviour:
@@ -2249,7 +2250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4993cf70a0e14dce8eaa3f68ddfc9cdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  divisor: 2.5
+  _divisor: 2.5
 --- !u!114 &5922374297102574306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2263,6 +2264,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateAmount: 1
+--- !u!114 &3996319836819104583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2000171639455669151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86409ada78388e34d831a1e6f474d573, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  savePoint: []
 --- !u!1 &2158201808662475559
 GameObject:
   m_ObjectHideFlags: 0
@@ -2603,7 +2617,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockId: 5817f7c0-f2a5-45f9-a5ca-64264e0166e8
-  instanceId: dc9f8ee9-9b7b-4afd-b51c-6c2c611f5192
+  instanceId: 9f84436d-98e1-4cad-a0ba-aaa42c745d16
   version: 1
 --- !u!114 &3939586369553652982
 MonoBehaviour:
@@ -3892,7 +3906,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockId: 5817f7c0-f2a5-45f9-a5ca-64264e0166e8
-  instanceId: 7d26006c-807f-41e3-949b-acd4685aa3a2
+  instanceId: 6dcdcb2e-7161-4dcf-85a7-b48106e3395d
   version: 1
 --- !u!114 &180509530479613719
 MonoBehaviour:
@@ -7544,7 +7558,7 @@ MonoBehaviour:
   raycastHitsList_: []
   obstacleLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 520
 --- !u!1 &6650793520316738288
 GameObject:
   m_ObjectHideFlags: 0
@@ -7721,7 +7735,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockId: 8b26b298-7bf4-490e-b245-a039c0184303
-  instanceId: 28aca215-442d-4f52-a6a6-6712067c95b3
+  instanceId: 95f17c71-ef0b-496b-9090-1f0e877ef610
   version: 1
 --- !u!114 &8186591767621842574
 MonoBehaviour:
@@ -8335,7 +8349,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockId: 8b26b298-7bf4-490e-b245-a039c0184303
-  instanceId: 48a4ff45-db6e-43c7-8819-2663e042b8b8
+  instanceId: bd41270b-f533-4270-9f8e-eae8bf023515
   version: 1
 --- !u!114 &2474560958799651246
 MonoBehaviour:
@@ -11161,6 +11175,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 2000171639455669151}
+    - target: {fileID: -1577073067109545091, guid: 7c8fe0a8574199f44a7851209a59795d, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5526890942020377915, guid: 7c8fe0a8574199f44a7851209a59795d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
