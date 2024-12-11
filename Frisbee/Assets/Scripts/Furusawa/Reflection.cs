@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 namespace Furusawa
 {
@@ -35,6 +36,7 @@ namespace Furusawa
             // 反射後の速度を反映
             _rb.velocity = Vector3.Scale(result, scalePower);
             GameManager.instance.Directon = result.normalized;
+            SoundManager.instance.Play("Reflect");
             StartCoroutine("WaitAndReflective");
         }
 

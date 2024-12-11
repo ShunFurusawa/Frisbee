@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -33,6 +34,8 @@ public class GameManager : MonoBehaviour
     {
         _beforeState = _currentState;
         _currentState = FrisbeeState.Have;
+        SoundManager.instance.Play("BGM");
+        SoundManager.instance.Play("Fire");
     }
 
     private void Update()

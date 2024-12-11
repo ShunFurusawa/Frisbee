@@ -44,9 +44,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9b12e5a7d46429080b63f3f7efbb32f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgmDatas: []
-  SEDatas: []
+  bgmDatas:
+  - name: BGM
+    audioClip: {fileID: 8300000, guid: efb5c8968bc66734ab74bffa7a3942c6, type: 3}
+    volume: 0.23
+  - name: Return
+    audioClip: {fileID: 8300000, guid: dc8ba2176e007c142852e3c76cfe4daa, type: 3}
+    volume: 0.7
+  - name: Fire
+    audioClip: {fileID: 8300000, guid: 1cf37b25ee7b26a4da55fc14233b58a4, type: 3}
+    volume: 1
+  SEDatas:
+  - name: Catch
+    audioClip: {fileID: 8300000, guid: eb20dc941efbaf5448c5bde9219be87e, type: 3}
+    playedTime: 0
+    volume: 1
+  - name: Throw
+    audioClip: {fileID: 8300000, guid: 739487ec65b17bf4fa46ff62d14cc397, type: 3}
+    playedTime: 0
+    volume: 1
+  - name: TP
+    audioClip: {fileID: 8300000, guid: 48e4a992270917c488e522f1f5c99786, type: 3}
+    playedTime: 0
+    volume: 0.75
+  - name: Fail
+    audioClip: {fileID: 8300000, guid: 780489e12d3d82148a76566afd179027, type: 3}
+    playedTime: 0
+    volume: 1
+  - name: Ready
+    audioClip: {fileID: 8300000, guid: de611b52f37bd144ca008bf25058ce51, type: 3}
+    playedTime: 0
+    volume: 0.95
+  - name: Reflect
+    audioClip: {fileID: 8300000, guid: 681a2a34a1e65dd4fb9821fd4fc03221, type: 3}
+    playedTime: 0
+    volume: 1
+  - name: Respawn
+    audioClip: {fileID: 8300000, guid: d67540a9e38b4a5419968336650dd33d, type: 3}
+    playedTime: 0
+    volume: 1
   playableDistance: 0.2
-  _audioMixerGroups:
-    BGM: {fileID: 3305915108461154133, guid: dc5ce66372eda1942ae8e17fbed25950, type: 2}
-    SE: {fileID: 5471763241299810586, guid: dc5ce66372eda1942ae8e17fbed25950, type: 2}

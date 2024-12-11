@@ -86,6 +86,7 @@ public class AfterThrow : MonoBehaviour
             if (other.gameObject.CompareTag("GameController"))
             {
                 SetFrisbeeAtHand();
+                SoundManager.instance.Play("Catch");
             }
         }
     }
@@ -101,11 +102,12 @@ public class AfterThrow : MonoBehaviour
             GameManager.instance.State = FrisbeeState.Return;
             SetFrisbeeAtHand();
             Debug.Log("TP Success!");
+            SoundManager.instance.Play("TP");
         }
         else
         {
             GameManager.instance.State = FrisbeeState.Return;
-            
+            SoundManager.instance.Play("Fail");
             //念のため速度ゼロに
             SetVelocityToZero();
             Debug.Log("TP Fail");
@@ -145,6 +147,7 @@ public class AfterThrow : MonoBehaviour
         }*/
         _rb.useGravity = false;
         gameObject.layer = LayerMask.NameToLayer("Frisbee");
+        SoundManager.instance.Play("Return");
     }
 
     public void SetFrisbeeAtHand()
@@ -164,6 +167,7 @@ public class AfterThrow : MonoBehaviour
             SetVelocityToZero();
             this.gameObject.transform.localPosition = new Vector3(0, 0, 0.2f);
             this.gameObject.transform.localRotation = Quaternion.identity;
+            SoundManager.instance.StopPlay("Return");
         }
         else
         {
@@ -179,5 +183,6 @@ public class AfterThrow : MonoBehaviour
     {
         _cameraRig.position = GameManager.instance.SavePoint;
         SetFrisbeeAtHand();
+        SoundManager.instance.Play("Respawn");
     }
 }

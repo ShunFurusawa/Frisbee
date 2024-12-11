@@ -2,14 +2,12 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
-using System;
-using UnityEngine.Audio;
-using UnityEngine.Serialization;
 
-namespace Furusawa
+namespace System
 {
     public class SoundManager : MonoBehaviour
     {
+        
         [Serializable]
         public class BGMData
         {
@@ -30,13 +28,6 @@ namespace Furusawa
             public float     volume;
         }
 
-        [Serializable]
-        private class AudioMixerGroups
-        {
-            public AudioMixerGroup BGM;
-            public AudioMixerGroup SE;
-        }
-        
         [SerializeField] private BGMData[] bgmDatas;
         [SerializeField] private SEData[]  SEDatas;
         [Header("一度再生してから、次再生出来るまでの間隔(秒)")]
@@ -49,8 +40,7 @@ namespace Furusawa
         public static SoundManager instance = null;
         
         //AudioSource（スピーカー）を同時に鳴らしたい音の数だけ用意
-        private AudioSource[] audioSourceList = new AudioSource[20];
-        [SerializeField] private AudioMixerGroups _audioMixerGroups;
+        private AudioSource[] audioSourceList = new AudioSource[10];
 
         private void SetInstance()
         {
@@ -88,20 +78,29 @@ namespace Furusawa
         /// <summary>
         /// 未使用のAudioSourceの取得 全て使用中ならnull
         /// </summary>
-        private AudioSource GetUnusedAudioSource()
+        private AudioSource GetUnusedAudioSource(AudioClip clip)
         {
-            for (int i = 0; i < audioSourceList.Length; i++)
+         
+            // すでに同じclipが入ったAudioSourceがあるならそれで再生
+            foreach (var audioSource in audioSourceList)
             {
-                if (audioSourceList[i].isPlaying == false)
-                    return audioSourceList[i];
+                if (audioSource.clip == clip)
+                {
+                    return audioSource;
+                }
+            }
+            foreach (var audioSource in audioSourceList)
+            {
+                if (audioSource.isPlaying == false)
+                    return audioSource;
             }
             return null; 
         }
         
-        public void PlayBGM(AudioClip bgm, float volume)
+        private void PlayBGM(AudioClip bgm, float volume)
         {
             // 同時に鳴らす場合を考慮して毎回変数生成する(必要ないかも)
-            AudioSource audioSource = GetUnusedAudioSource();
+            AudioSource audioSource = GetUnusedAudioSource(bgm);
 
             if (audioSource == null)
             {
@@ -112,18 +111,17 @@ namespace Furusawa
             audioSource.volume = volume;
             audioSource.loop = true;
             audioSource.clip = bgm;
-            audioSource.outputAudioMixerGroup = _audioMixerGroups.BGM;
             audioSource.Play();
         }
 
-        public void PlaySE(AudioClip clip, float volume)
+        private void PlaySE(AudioClip clip, float volume)
         {
             // 同時に鳴らす場合を考慮して毎回変数生成する(必要ないかも)
-            AudioSource audioSource = GetUnusedAudioSource();
+            AudioSource audioSource = GetUnusedAudioSource(clip);
 
             if (audioSource == null)
             {
-                Debug.Log("BGM play failed");
+                Debug.Log("SE play failed");
                 return;
             }
 
@@ -131,7 +129,6 @@ namespace Furusawa
             audioSource.playOnAwake = false;
             audioSource.loop = false;
             audioSource.clip = clip;
-            audioSource.outputAudioMixerGroup = _audioMixerGroups.SE;
             audioSource.PlayOneShot(clip);
         }
 
@@ -141,11 +138,15 @@ namespace Furusawa
         /// <param name="name">AudioClipの名前でなく登録した別名</param>
         public void Play(string name)
         {
+            if (name == null)
+            {
+                Debug.Log("String is null !");
+                return;
+            }
             // それぞれの管理用Dictionaryから別名で検索、一致したら再生
             if (BGMDictionary.TryGetValue(name, out BGMData bgmData))
             {
                 PlayBGM(bgmData.audioClip, bgmData.volume);
-                Debug.Log("BGM play: " + name);
             }
             else if (SEDictionary.TryGetValue(name, out SEData seData))
             {
@@ -154,7 +155,6 @@ namespace Furusawa
                 
                 seData.playedTime = Time.realtimeSinceStartup; 　//次回用に今回の再生時間の保持 
                 PlaySE(seData.audioClip, seData.volume);
-                Debug.Log("SE play: " + name);
             }
             else
             {
@@ -162,5 +162,81 @@ namespace Furusawa
             }
         }
 
+        /// <summary>
+        /// nameのAudioClipを使っているAudioSourceの取得
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public AudioSource GetUsingAudioSource(string name)
+        {
+            if (name == null)
+            {
+                Debug.Log("param name is null");
+                return null;
+            }
+            
+            if (BGMDictionary.TryGetValue(name, out BGMData bgmData))
+            {
+                for (int i = 0; i < audioSourceList.Length; i++)
+                {
+                    if (audioSourceList[i].clip == bgmData.audioClip)
+                        return audioSourceList[i];
+                }
+            }
+            else if (SEDictionary.TryGetValue(name, out SEData seData))
+            {
+                for (int i = 0; i < audioSourceList.Length; i++)
+                {
+                    if (audioSourceList[i].clip == seData.audioClip)
+                        return audioSourceList[i];
+                }
+            }
+           
+            Debug.Log("そのAudioClipは現在使われていません");
+            return null;
+            
+        }
+
+        public bool GetIsPlaying(string name)
+        {
+            AudioSource audioSource =  GetUsingAudioSource(name);
+            if (audioSource == null)
+            {
+             //   Debug.Log("そのクリップは再生されていません");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        public void StopPlay(string name)
+        {
+            AudioSource audioSource =  GetUsingAudioSource(name);
+
+            if (audioSource == null)
+            {
+                //Debug.Log("そのクリップは再生されていません");
+                return;
+            }
+            if (audioSource.isPlaying)
+            {
+                audioSource.Stop();
+            }
+        }
+
+        /// <summary>
+        /// 今流している音をすべて止める
+        /// </summary>
+        public void StopAllSound()
+        {
+            foreach (var audioSource in audioSourceList)
+            {
+                if (audioSource.isPlaying)
+                {
+                    audioSource.Stop();
+                }
+            }
+        }
     }
 }
