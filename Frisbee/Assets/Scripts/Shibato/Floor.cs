@@ -9,13 +9,13 @@ namespace Shibato
         private GameObject floor;
 
         [SerializeField, JapaneseLabel("出現させる壁")]
-        private GameObject wall;
+        private GameObject spawnWall;
         private void OnCollisionEnter(Collision other)
         {
             if (other.gameObject.CompareTag("Frisbee"))
             {
-                floor.SetActive(true);
-                wall.SetActive(false);
+                    floor.SetActive(true);
+                    spawnWall.SetActive(false);
             }
         }
 
@@ -27,8 +27,7 @@ namespace Shibato
                     if (rb != null)
                     {
                         Debug.Log("Destroying Rigidbody...");
-                        rb.isKinematic = true; // Optional: Stop physics before destroying.
-                        Destroy(rb);
+                        rb.constraints = RigidbodyConstraints.FreezeAll;
                     }
                     else
                     {

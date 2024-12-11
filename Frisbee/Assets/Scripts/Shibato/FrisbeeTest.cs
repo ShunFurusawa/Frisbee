@@ -8,8 +8,6 @@ namespace Shibato
     {
         [SerializeField] [JapaneseLabel("プレイヤーカメラ")]
         private GameObject player;
-
-        [SerializeField] private GameManager gameManager;
         
         // [SerializeField] [JapaneseLabel("移動速度")]
         // private float speed = 5f;
@@ -70,7 +68,7 @@ namespace Shibato
         {
             //_camera.MyDestroyed();
             //Destroyanimetion();
-             gameManager.Respawn();
+            GameManager.instance.Respawn();
         }
         private void FireCollision()
         {

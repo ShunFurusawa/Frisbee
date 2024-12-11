@@ -6,11 +6,11 @@ namespace Shibato
     public class TpGate : MonoBehaviour
     {
         [SerializeField,JapaneseLabel("出口")] private Transform exitGate;
-        private BoxCollider exitGateBoxCollider;
+        private CapsuleCollider exitGateCapsuleCollider;
 
         private void Awake()
         {
-            exitGateBoxCollider = exitGate.GetComponent<BoxCollider>();
+            exitGateCapsuleCollider = exitGate.GetComponent<CapsuleCollider>();
         }
 
         void OnTriggerEnter(Collider other)
@@ -22,7 +22,7 @@ namespace Shibato
                 Vector3 entrancePosition = transform.position;
                 Vector3 exitPosition = exitGate.transform.position;
                 
-                exitGateBoxCollider.enabled = false;
+                exitGateCapsuleCollider.enabled = false;
                 // 入射ベクトルを保存
                 Vector3 velocity = rb.velocity;
 
@@ -40,7 +40,7 @@ namespace Shibato
         {
             yield return new WaitForSeconds(10f);
             
-            exitGateBoxCollider.enabled = true;
+            exitGateCapsuleCollider.enabled = true;
         }
     }
 }
