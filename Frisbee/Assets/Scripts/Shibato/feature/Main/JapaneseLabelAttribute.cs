@@ -3,7 +3,6 @@
 using UnityEditor;
 #endif
 
-using UnityEngine;
 
 public class JapaneseLabelAttribute : PropertyAttribute
 {
