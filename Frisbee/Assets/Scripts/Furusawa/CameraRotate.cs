@@ -18,9 +18,16 @@ namespace Furusawa
 
         private void Rotate(Vector2 vector)
         {
-            if (vector.x != 0)
+            if (vector == Vector2.zero)
+                return;
+            
+            if (vector.x > 0)
             {
-               transform.Rotate(0f, vector.x * rotateAmount, 0f);
+               transform.Rotate(0f, rotateAmount, 0f);
+            }
+            else if (vector.x < 0)
+            {
+                transform.Rotate(0f, -rotateAmount, 0f);
             }
         }
     }

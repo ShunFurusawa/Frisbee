@@ -102,11 +102,11 @@ public class SinkingFix : MonoBehaviour
         }
     }
  
-    /*private void TempStopPhysics()
+    private void TempStopPhysics()
     {
         _rb.velocity = Vector3.zero;
         _rb.angularVelocity = Vector3.zero;
-    }*/
+    }
 
     private Vector3 direction;
     private float distance;
@@ -125,7 +125,7 @@ public class SinkingFix : MonoBehaviour
                 {
                     //direction = Vector3.Scale(direction, new Vector3(1, 7f, 1));
                     transform.position += direction * distance;
-                  //  TempStopPhysics();  //移動後の動き抑制
+                    TempStopPhysics();  //移動後の動き抑制
                     Debug.Log("call TempStopPhysics");
                 }
             }
