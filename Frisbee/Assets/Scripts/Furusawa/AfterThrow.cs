@@ -14,6 +14,9 @@ public class AfterThrow : MonoBehaviour
    
     [Header("フリスビーの親オブジェクト(RightControllerAnchor)")]
     [SerializeField] private Transform _frisParent;
+    
+    [Header("フリスビーは〇fのスピードから加速して手元に戻ってくる")]
+    [SerializeField] private float moveSpeed = 5f;
 
     private void Start()
     {
@@ -21,6 +24,7 @@ public class AfterThrow : MonoBehaviour
         _collider = GetComponent<BoxCollider>();
     }
 
+    private float time;
     private void Update()
     {
         // Bボタンでフリスビー戻す
@@ -43,7 +47,12 @@ public class AfterThrow : MonoBehaviour
         if (GameManager.instance.State == FrisbeeState.Return)
         {
            // Debug.Log("now return");
-            ReturnAddForce();
+            time += Time.fixedDeltaTime;
+            AddReturnForce();
+        }
+        else
+        {
+            time = 0f;
         }
     }
     
@@ -111,18 +120,15 @@ public class AfterThrow : MonoBehaviour
 
     private Vector3 _direction;
     private Transform _target;
-   
-    [Header("フリスビーは〇fのスピードで手元に戻ってくる")]
-    [SerializeField] private float moveSpeed = 5f;
-        
-    private void ReturnAddForce()
+    private void AddReturnForce()
     {
       　//コライダー無効可->手元に飛ばす->SetFrisbee呼び出す
        // _collider.enabled = false;
 
        _target = _frisParent;
        _direction = (_target.position - transform.position).normalized;
-       _rb.AddForce(_direction * moveSpeed);
+       _direction *= moveSpeed; 
+       _rb.velocity = _direction * time;
     }
 
     /// <summary>
