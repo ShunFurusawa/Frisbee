@@ -9,13 +9,17 @@ namespace Shibato
         private GameObject floor;
 
         [SerializeField, JapaneseLabel("出現させる壁")]
-        private GameObject wall;
+        private GameObject spawnWall;
+
+        [SerializeField, JapaneseLabel("消す壁")]
+        private GameObject deadWall;
         private void OnCollisionEnter(Collision other)
         {
             if (other.gameObject.CompareTag("Frisbee"))
             {
-                floor.SetActive(true);
-                wall.SetActive(false);
+                    floor.SetActive(true);
+                    spawnWall.SetActive(false);
+                    deadWall.SetActive(false); 
             }
         }
 

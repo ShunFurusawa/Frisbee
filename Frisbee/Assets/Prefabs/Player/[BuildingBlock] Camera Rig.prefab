@@ -2068,7 +2068,6 @@ GameObject:
   - component: {fileID: 6893152178819078041}
   - component: {fileID: 5190338637641010828}
   - component: {fileID: 5922374297102574306}
-  - component: {fileID: 3996319836819104583}
   m_Layer: 0
   m_Name: '[BuildingBlock] Camera Rig'
   m_TagString: Player
@@ -2263,20 +2262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf42c156ec634962b5d7613df257c27b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateAmount: 1
---- !u!114 &3996319836819104583
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2000171639455669151}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86409ada78388e34d831a1e6f474d573, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  savePoint: []
+  rotateAmount: 1.5
 --- !u!1 &2158201808662475559
 GameObject:
   m_ObjectHideFlags: 0
