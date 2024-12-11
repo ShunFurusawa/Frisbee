@@ -13,7 +13,7 @@ public class SinkingFix : MonoBehaviour
     {
         isSinking = false;
         _cc = this.GetComponent<CapsuleCollider>();
-       // _rb = GetComponent<Rigidbody>();
+        _rb = GetComponent<Rigidbody>();
         if (_cc == null)
         {
             Debug.Log("CapsuleCollider is null");

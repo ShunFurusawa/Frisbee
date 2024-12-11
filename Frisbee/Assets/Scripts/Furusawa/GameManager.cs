@@ -79,6 +79,11 @@ public class GameManager : MonoBehaviour
         {
             Restart();
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            EndGame();
+        }
     }
 
     public void Restart()
@@ -98,5 +103,15 @@ public class GameManager : MonoBehaviour
     {
         afterThrow.RespawnProcess();
         State = FrisbeeState.Have;
+    }
+    
+    public void EndGame()
+    {
+        //ゲームプレイ終了
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false; 
+#else
+       Application.Quit();
+#endif
     }
 }
