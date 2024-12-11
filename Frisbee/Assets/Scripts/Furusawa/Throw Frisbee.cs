@@ -80,6 +80,7 @@ public class ThrowFrisbee : MonoBehaviour
         if (OVRInput.GetDown(OVRInput.RawButton.RIndexTrigger))
         {
             GameManager.instance.State = FrisbeeState.Ready;
+          //  SoundManager.instance.Play("Ready");
         }
     }
 
@@ -120,6 +121,7 @@ public class ThrowFrisbee : MonoBehaviour
         _RB.velocity =　Vector3.Scale(direction, _velocity);
         
         _RB.AddForce(Vector3.up * upScale, ForceMode.Impulse);
+        SoundManager.instance.Play("Throw");
     }
 
     /// <summary>
