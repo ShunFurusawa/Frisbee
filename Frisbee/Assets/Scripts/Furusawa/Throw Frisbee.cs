@@ -31,8 +31,6 @@ public class ThrowFrisbee : MonoBehaviour
         InputTracking.GetNodeStates(states);
         CheckReadyInput();
         CheckVelocity();
-        
-      
     }
 
     public Vector3 Velocity

@@ -955,7 +955,7 @@ GameObject:
   m_Component:
   - component: {fileID: 134556042438603921}
   - component: {fileID: 4106679935956712636}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: RightControllerAnchor
   m_TagString: GameController
   m_Icon: {fileID: 0}
@@ -2068,7 +2068,9 @@ GameObject:
   - component: {fileID: 6893152178819078041}
   - component: {fileID: 5190338637641010828}
   - component: {fileID: 5922374297102574306}
-  m_Layer: 0
+  - component: {fileID: 3996319836819104583}
+  - component: {fileID: 328142173861136064}
+  m_Layer: 8
   m_Name: '[BuildingBlock] Camera Rig'
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -2105,7 +2107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockId: e47682b9-c270-40b1-b16d-90b627a5ce1b
-  instanceId: 21ecf6ae-ba16-475c-929e-6c81335d1215
+  instanceId: 54bfdd0a-0acb-4664-a4d8-f51de2eeb942
   version: 1
 --- !u!114 &1215626494982956963
 MonoBehaviour:
@@ -2262,7 +2264,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf42c156ec634962b5d7613df257c27b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateAmount: 1.5
+  rotateAmount: 1.2
+--- !u!114 &3996319836819104583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2000171639455669151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86409ada78388e34d831a1e6f474d573, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  savePoint: []
+--- !u!54 &328142173861136064
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2000171639455669151}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &2158201808662475559
 GameObject:
   m_ObjectHideFlags: 0
@@ -2603,7 +2645,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockId: 5817f7c0-f2a5-45f9-a5ca-64264e0166e8
-  instanceId: 9f84436d-98e1-4cad-a0ba-aaa42c745d16
+  instanceId: 1c0d5a27-61d5-4ba3-8424-7972f5fd4bc6
   version: 1
 --- !u!114 &3939586369553652982
 MonoBehaviour:
@@ -3892,7 +3934,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockId: 5817f7c0-f2a5-45f9-a5ca-64264e0166e8
-  instanceId: 6dcdcb2e-7161-4dcf-85a7-b48106e3395d
+  instanceId: 27aec86b-4593-4831-8012-49477d169d24
   version: 1
 --- !u!114 &180509530479613719
 MonoBehaviour:
@@ -7721,7 +7763,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockId: 8b26b298-7bf4-490e-b245-a039c0184303
-  instanceId: 95f17c71-ef0b-496b-9090-1f0e877ef610
+  instanceId: dc97d397-4fd4-4992-a237-e4e9a8a88ba2
   version: 1
 --- !u!114 &8186591767621842574
 MonoBehaviour:
@@ -8335,7 +8377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockId: 8b26b298-7bf4-490e-b245-a039c0184303
-  instanceId: bd41270b-f533-4270-9f8e-eae8bf023515
+  instanceId: 77c628fe-05e0-42a5-926b-f400eca7003c
   version: 1
 --- !u!114 &2474560958799651246
 MonoBehaviour:
@@ -11161,10 +11203,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 2000171639455669151}
-    - target: {fileID: -1577073067109545091, guid: 7c8fe0a8574199f44a7851209a59795d, type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5526890942020377915, guid: 7c8fe0a8574199f44a7851209a59795d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -11213,10 +11251,6 @@ PrefabInstance:
       propertyPath: _frisParent
       value: 
       objectReference: {fileID: 134556042438603921}
-    - target: {fileID: 8522325600842921248, guid: 7c8fe0a8574199f44a7851209a59795d, type: 3}
-      propertyPath: magnification
-      value: 85
-      objectReference: {fileID: 0}
     - target: {fileID: 9210741682833451940, guid: 7c8fe0a8574199f44a7851209a59795d, type: 3}
       propertyPath: m_Name
       value: Frisbee

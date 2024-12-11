@@ -54,6 +54,9 @@ namespace Shibato
 
         private void OnTriggerStay(Collider other)
         {
+            if (GameManager.instance.State == FrisbeeState.Ready)
+                return;
+            
             if (cachedRigidbodies.TryGetValue(other, out var rb))
             {
                 var lift = windDirection * liftForce;
