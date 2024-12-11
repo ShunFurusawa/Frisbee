@@ -65,7 +65,8 @@ namespace Shibato
             yield return new WaitForSeconds(fallDelay);
 
             // 落下させる
-            playerRigidbody = player.gameObject.AddComponent<Rigidbody>();
+            playerRigidbody = player.gameObject.GetComponent<Rigidbody>();
+            playerRigidbody.constraints = RigidbodyConstraints.None;
             playerRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
             playerRigidbody.constraints = RigidbodyConstraints.FreezePositionX;
             playerRigidbody.constraints = RigidbodyConstraints.FreezePositionZ;
