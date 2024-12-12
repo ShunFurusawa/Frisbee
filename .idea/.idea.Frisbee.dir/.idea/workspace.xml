@@ -6,6 +6,19 @@
   <component name="ChangeListManager">
     <list default="true" id="6f5f3c4e-40e5-4d9e-96f7-c848a031303a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Frisbee.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Frisbee.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frisbee/Assets/Contents/Effect/Matthew Guz/Materials/Floor/Floor.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Frisbee/Assets/Contents/Effect/Matthew Guz/Materials/Floor/Floor.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frisbee/Assets/Contents/Materials/New Material.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Frisbee/Assets/Contents/Materials/New Material.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frisbee/Assets/Contents/asset/Treasure/treasureMaterial.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Frisbee/Assets/Contents/asset/Treasure/treasureMaterial.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frisbee/Assets/Contents/asset/rock/Materials/rock.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Frisbee/Assets/Contents/asset/rock/Materials/rock.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frisbee/Assets/Material/Floor_temporary.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Frisbee/Assets/Material/Floor_temporary.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frisbee/Assets/Material/Gate_temporary.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Frisbee/Assets/Material/Gate_temporary.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frisbee/Assets/Material/Glass.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Frisbee/Assets/Material/Glass.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frisbee/Assets/Material/eff_mat_teleport_001.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Frisbee/Assets/Material/eff_mat_teleport_001.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frisbee/Assets/Material/eff_mat_teleport_002.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Frisbee/Assets/Material/eff_mat_teleport_002.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frisbee/Assets/Oculus/OculusProjectConfig.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Frisbee/Assets/Oculus/OculusProjectConfig.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frisbee/Assets/Prefabs/Torch.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Frisbee/Assets/Prefabs/Torch.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frisbee/Assets/Scenes/Union.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Frisbee/Assets/Scenes/Union.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frisbee/ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Frisbee/ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +33,9 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Frisbee/Assets/Scripts/Shibato/DropArea.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
@@ -33,7 +49,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "develop",
+    "git-widget-placeholder": "feature/β",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -59,6 +75,7 @@
       <updated>1732692707313</updated>
       <workItem from="1732692708957" duration="1429000" />
       <workItem from="1733859907792" duration="470000" />
+      <workItem from="1733969865827" duration="2690000" />
     </task>
     <servers />
   </component>
