@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -168,6 +169,8 @@ public class AfterThrow : MonoBehaviour
             this.gameObject.transform.localPosition = new Vector3(0, 0, 0.2f);
             this.gameObject.transform.localRotation = Quaternion.identity;
             SoundManager.instance.StopPlay("Return");
+         //   StartCoroutine(VibrateController(true));
+
         }
         else
         {
@@ -184,5 +187,33 @@ public class AfterThrow : MonoBehaviour
         _cameraRig.position = GameManager.instance.SavePoint;
         SetFrisbeeAtHand();
         SoundManager.instance.Play("Respawn");
+    }
+
+    [Header("振動は〇秒後に停止する")]
+    [SerializeField] private float stopTime;
+    [Header("振幅(強さ)")]
+    [SerializeField] private float frequency;
+    [Header("振動数")]
+    [SerializeField] private float amplitude;
+    
+    public IEnumerator VibrateController(bool Rcon)
+    {
+        if (Rcon)
+        {
+            // (振幅(振動の強さ), 振動数(振動の大きさ), どちらのコントローラーか)
+            // 左のコントローラーを振動させる
+            OVRInput.SetControllerVibration(frequency, amplitude, OVRInput.Controller.RTouch);
+        }
+        else
+        {
+            //右のコントローラーを振動させる
+            OVRInput.SetControllerVibration(frequency, amplitude, OVRInput.Controller.LTouch);
+        }
+
+        yield return new WaitForSeconds(stopTime);
+        
+        //コントローラーを振動を止める
+        OVRInput.SetControllerVibration(0, 0);
+        
     }
 }

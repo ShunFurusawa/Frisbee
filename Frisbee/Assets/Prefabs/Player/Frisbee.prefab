@@ -335,6 +335,9 @@ MonoBehaviour:
   _cameraRig: {fileID: 0}
   _frisParent: {fileID: 0}
   moveSpeed: 6
+  stopTime: 0.2
+  frequency: 0.4
+  amplitude: 0.4
 --- !u!114 &-1577073067109545091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,7 +351,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  gameManager: {fileID: 0}
   fireGameObject: {fileID: 5523813300628688629, guid: 2cc2a863427c24a44a670fb7891e57db, type: 3}
 --- !u!114 &4768745020616102860
 MonoBehaviour:

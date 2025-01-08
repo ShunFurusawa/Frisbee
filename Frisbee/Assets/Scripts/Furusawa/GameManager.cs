@@ -63,6 +63,17 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("state change " + _beforeState + "->" + _currentState);
         }
+
+        if (_beforeState == FrisbeeState.Fly && _currentState == FrisbeeState.Have)
+        {
+          //  StartCoroutine(afterThrow.VibrateController(true));
+          //  StartCoroutine(afterThrow.VibrateController(false));
+        }
+
+        if (_beforeState == FrisbeeState.Return && _currentState == FrisbeeState.Have)
+        {
+            StartCoroutine(afterThrow.VibrateController(true));
+        }
         _beforeState = _currentState;
     }
     

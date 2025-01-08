@@ -9,7 +9,6 @@ namespace Furusawa
     {
         [Header("回転の中心(フリスビー)")]
         [SerializeField] GameObject centerObj;
-        [FormerlySerializedAs("angle")]
         [Header("回転スピードの倍率")]
         [SerializeField][Range(0f, 100f)]  float magnification = 50f;
 
