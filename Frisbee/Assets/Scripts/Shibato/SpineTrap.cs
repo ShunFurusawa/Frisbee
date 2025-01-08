@@ -9,6 +9,7 @@ namespace Shibato
         [SerializeField] private float downPositionY = 0f;  // とげが下がる位置
         [SerializeField] private float moveDuration = 0.5f;  // とげが動く時間
         [SerializeField] private float interval = 5f;  // 上下する間隔
+        [SerializeField] private GameManager gameManager;
 
         private bool isUp = false;  // 現在の状態
         private Vector3 upPosition;
@@ -45,6 +46,13 @@ namespace Shibato
             }
 
             transform.position = targetPosition;  // 最終位置を正確に設定
+        }
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("spines"))
+            {
+                gameManager.Respawn();
+            }
         }
     }
 }

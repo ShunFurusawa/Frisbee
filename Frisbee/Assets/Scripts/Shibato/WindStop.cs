@@ -4,7 +4,8 @@ public class WindStop : MonoBehaviour
 {
     [JapaneseLabel("オンオフを切り替える風")] [SerializeField]
     private GameObject windObject;
-
+    [JapaneseLabel("オンオフを切り替える風2個目")] [SerializeField]
+    private GameObject windObject2;
     [JapaneseLabel("初期設定")] [SerializeField]
     private bool windSwitch;
 
@@ -35,7 +36,16 @@ public class WindStop : MonoBehaviour
 
     private void WindChange()
     {
-        windRenderer.material = windSwitch ? ON : OFF;
+        if (ON != null || OFF != null)
+        {
+            windRenderer.material = windSwitch ? ON : OFF;
+        }
+
+        if (windObject2 != null)
+        { 
+            windObject2.SetActive(!windSwitch);
+        }
         windObject.SetActive(windSwitch);
+
     }
 }

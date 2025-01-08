@@ -5,20 +5,14 @@ using UnityEngine;
 
 public class SavePoint : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> savePoint;
 
-    private Transform _saveTransform;
-    private void OnTriggerEnter(Collider other)
+    private void Awake()
     {
-        if (savePoint.Contains(other.gameObject))
-        {
-            _saveTransform = this.transform;
-            
-        }
+        
     }
 
-    public void Save()
+    private void OnTriggerEnter(Collider other)
     {
-        this.transform.position = _saveTransform.position;
-    } 
+
+    }
 }
