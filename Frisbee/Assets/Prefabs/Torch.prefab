@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delayTime: 0
-  brightness: 1.5
+  brightness: 15
 --- !u!114 &-2365644497219481614
 MonoBehaviour:
   m_ObjectHideFlags: 0

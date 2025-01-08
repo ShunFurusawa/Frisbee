@@ -26,6 +26,7 @@ Material:
   m_ModifiedSerializedProperties: 16
   m_ValidKeywords:
   - _ALPHAPREMULTIPLY_ON
+  - _SPECULAR_SETUP
   - _SURFACE_TYPE_TRANSPARENT
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -49,12 +50,13 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 1
     - _GlossyReflections: 1
-    - _Metallic: 0.079
+    - _Metallic: 0
     - _Parallax: 0.02
-    - _Smoothness: 1
+    - _Smoothness: 0.568
     - _Surface: 1
+    - _WorkflowMode: 0
     - _ZWrite: 0
     m_Colors:
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 0}
-    - _Color: {r: 1, g: 1, b: 1, a: 0}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 0.5176471}
+    - _Color: {r: 1, g: 1, b: 1, a: 0.5176471}
   m_BuildTextureStacks: []
