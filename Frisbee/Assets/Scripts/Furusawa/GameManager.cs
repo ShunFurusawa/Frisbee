@@ -1,4 +1,5 @@
 using System;
+using Furusawa;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,6 +17,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;
 
     [SerializeField] private AfterThrow afterThrow;
+    [SerializeField] private ParticleManager PM;
    // [SerializeField] private FrisbeeState currentFrisbeeState;
     private void Awake()
     {
@@ -68,6 +70,7 @@ public class GameManager : MonoBehaviour
         {
           //  StartCoroutine(afterThrow.VibrateController(true));
           //  StartCoroutine(afterThrow.VibrateController(false));
+           PM.ParticlePlay();
         }
 
         if (_beforeState == FrisbeeState.Return && _currentState == FrisbeeState.Have)
