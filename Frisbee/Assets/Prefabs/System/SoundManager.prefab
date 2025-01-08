@@ -79,8 +79,16 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: 681a2a34a1e65dd4fb9821fd4fc03221, type: 3}
     playedTime: 0
     volume: 1
-  - name: Respawn
-    audioClip: {fileID: 8300000, guid: d67540a9e38b4a5419968336650dd33d, type: 3}
+  - name: warp
+    audioClip: {fileID: 8300000, guid: 315b5e17c20a2b44b9a5a31856d59c56, type: 3}
     playedTime: 0
-    volume: 1
+    volume: 0.8
+  - name: FallFloar
+    audioClip: {fileID: 8300000, guid: cea742a4bacd0ca4dbc1383cf1df6c04, type: 3}
+    playedTime: 0
+    volume: 0.7
+  - name: Hari
+    audioClip: {fileID: 8300000, guid: 6f35349f9cdcc044cb15f80280bce85d, type: 3}
+    playedTime: 0
+    volume: 0.6
   playableDistance: 0.2
