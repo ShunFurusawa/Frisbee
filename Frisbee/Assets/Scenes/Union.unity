@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17471266, g: 0.21853587, b: 0.30080408, a: 1}
+  m_IndirectSpecularColor: {r: 0.17482619, g: 0.21869025, b: 0.30096895, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4877,14 +4877,14 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.4339623, g: 0.25846362, b: 0.08433604, a: 1}
+  m_Color: {r: 0.8679245, g: 0.59178567, b: 0.12691349, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 1
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -4936,13 +4936,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 491550748}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.65247667, y: -0.2909705, z: 0.072810024, w: 0.69592327}
+  m_LocalRotation: {x: 0.75186217, y: -0.27628735, z: 0.116749406, w: 0.5871442}
   m_LocalPosition: {x: 2.04, y: 100.1, z: 23.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 108.099, y: 86.165, z: 116.361}
+  m_LocalEulerAnglesHint: {x: 108.662994, y: 27.725998, z: 60.443}
 --- !u!114 &491550751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4956,7 +4956,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Version: 3
-  m_UsePipelineSettings: 1
+  m_UsePipelineSettings: 0
   m_AdditionalLightsShadowResolutionTier: 2
   m_LightLayerMask: 1
   m_RenderingLayers: 1
@@ -7350,17 +7350,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1171113415}
   m_SourcePrefab: {fileID: 100100000, guid: 51b1c00a5c3ee3c4ba6caf2e86d2a789, type: 3}
---- !u!114 &693003252 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5323107832311582963, guid: 07e9e479cf3153a4cac4b82ea621099a, type: 3}
-  m_PrefabInstance: {fileID: 1545959695}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e40d6d117305f5b4f894e23b713cf119, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &697986873 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7889766639832261123, guid: 07e9e479cf3153a4cac4b82ea621099a, type: 3}
@@ -9873,6 +9862,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3153735085271485672, guid: 4bd0f96c4b836e84096f7da4df3c7059, type: 3}
+      propertyPath: PM
+      value: 
+      objectReference: {fileID: 1545959697}
     - target: {fileID: 3153735085271485672, guid: 4bd0f96c4b836e84096f7da4df3c7059, type: 3}
       propertyPath: frisbee
       value: 
@@ -19490,6 +19483,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e40d6d117305f5b4f894e23b713cf119, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1545959697 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2357953634778252610, guid: 07e9e479cf3153a4cac4b82ea621099a, type: 3}
+  m_PrefabInstance: {fileID: 1545959695}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e0ea476bad246f4a370598a0e645984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1550676197 stripped
