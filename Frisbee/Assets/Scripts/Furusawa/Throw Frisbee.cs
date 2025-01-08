@@ -49,7 +49,7 @@ public class ThrowFrisbee : MonoBehaviour
                 if (s.nodeType == node)
                 {
                     s.TryGetVelocity(out _velocity);
-                    Debug.Log(_velocity);
+//                    Debug.Log(_velocity);
                     // s.TryGetAcceleration();   前回加速度の取得できなかったきがする
                     break;
                 }
