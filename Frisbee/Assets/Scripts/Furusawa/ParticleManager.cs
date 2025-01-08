@@ -1,34 +1,57 @@
 ﻿using System;
+using Oculus.Platform.Models;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Furusawa
 {
     public class ParticleManager : MonoBehaviour
     {
-        [SerializeField] private ParticleSystem particle;
+         [SerializeField] private ParticleSystem TPparticle;
+         [SerializeField] private ParticleSystem FrisParticle;
 
         private float time;
 
         private void Update()
         {
-            if (particle.isPlaying)
+            if (TPparticle.isPlaying)
             {
                 time += Time.deltaTime;
 
                 if (time >= 3f)
                 {
-                    particle.Stop();
+                    TPparticle.Stop();
+                    Debug.Log("Stop Particle");
+                    time = 0;
                 }
             }
         }
 
-        public void ParticlePlay()
+        public void ParticleStop()
         {
-            if (particle.isPlaying)
+            FrisParticle.Stop();
+        }
+
+        public void ParticlePlay(bool isTpPart)
+        {
+            if (isTpPart)
             {
-                particle.Stop();
+                if (TPparticle.isPlaying)
+                {
+                    TPparticle.Stop();
+                    time = 0;
+                }
+                TPparticle.Play();
             }
-            particle.Play();
+            else
+            {
+                if (FrisParticle.isPlaying)
+                {
+                    FrisParticle.Stop();
+                }
+                FrisParticle.Play();
+            }
+        
         }
     }
 }
