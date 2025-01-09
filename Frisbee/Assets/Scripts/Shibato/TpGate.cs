@@ -18,7 +18,7 @@ namespace Shibato
             Rigidbody rb = other.GetComponent<Rigidbody>();
             if (other.CompareTag("Frisbee"))
             {
-                
+                SoundManager.instance.Play("warp");
                 Vector3 entrancePosition = transform.position;
                 Vector3 exitPosition = exitGate.transform.position;
                 

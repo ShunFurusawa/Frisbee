@@ -53,6 +53,7 @@ namespace Shibato
             // 揺れ
             while (elapsedTime < wobbleDuration)
             {
+                SoundManager.instance.Play("FallFloar");
                 elapsedTime += Time.deltaTime;
                 float offsetX = Mathf.Sin(elapsedTime * 10) * wobbleIntensity;
                 float offsetZ = Mathf.Cos(elapsedTime * 10) * wobbleIntensity;
