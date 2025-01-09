@@ -5067,7 +5067,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Version: 3
-  m_UsePipelineSettings: 0
+  m_UsePipelineSettings: 1
   m_AdditionalLightsShadowResolutionTier: 2
   m_LightLayerMask: 1
   m_RenderingLayers: 1
@@ -19936,6 +19936,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 58819477651834213, guid: 07e9e479cf3153a4cac4b82ea621099a, type: 3}
+      propertyPath: ShapeModule.m_Texture
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 58819477651834213, guid: 07e9e479cf3153a4cac4b82ea621099a, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 58819477651834213, guid: 07e9e479cf3153a4cac4b82ea621099a, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 3.5
+      objectReference: {fileID: 0}
     - target: {fileID: 168331657135796235, guid: 07e9e479cf3153a4cac4b82ea621099a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -20015,6 +20027,18 @@ PrefabInstance:
     - target: {fileID: 7130533601257719829, guid: 07e9e479cf3153a4cac4b82ea621099a, type: 3}
       propertyPath: instanceId
       value: 2a3277b3-2c66-4b48-9a55-fec1ca3e62c2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8547011137749451851, guid: 07e9e479cf3153a4cac4b82ea621099a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8547011137749451851, guid: 07e9e479cf3153a4cac4b82ea621099a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.385
+      objectReference: {fileID: 0}
+    - target: {fileID: 8547011137749451851, guid: 07e9e479cf3153a4cac4b82ea621099a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.612
       objectReference: {fileID: 0}
     - target: {fileID: 9110183837233775740, guid: 07e9e479cf3153a4cac4b82ea621099a, type: 3}
       propertyPath: instanceId
