@@ -7120,7 +7120,7 @@ GameObject:
   - component: {fileID: 648211935}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: CanTP
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12978,6 +12978,10 @@ PrefabInstance:
       propertyPath: windObject
       value: 
       objectReference: {fileID: 322636035}
+    - target: {fileID: 7337359558417205231, guid: 0ac830ae79ca4a7429468200c26c898c, type: 3}
+      propertyPath: windSwitch
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8430657483492126762, guid: 0ac830ae79ca4a7429468200c26c898c, type: 3}
       propertyPath: windObject
       value: 
@@ -13664,6 +13668,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3838276460955819750, guid: a281202371f3c304f8a8627aad20cf03, type: 3}
+      propertyPath: m_TagString
+      value: CanTP
+      objectReference: {fileID: 0}
     - target: {fileID: 4381425539198918421, guid: a281202371f3c304f8a8627aad20cf03, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.73
@@ -20000,6 +20008,10 @@ PrefabInstance:
       propertyPath: controlPower.z
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 365992209664537539, guid: 07e9e479cf3153a4cac4b82ea621099a, type: 3}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2000171639455669151, guid: 07e9e479cf3153a4cac4b82ea621099a, type: 3}
       propertyPath: m_Name
       value: '[BuildingBlock] Camera Rig section1'
@@ -20024,6 +20036,22 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1789315157}
+    - target: {fileID: 6227882907427771259, guid: 07e9e479cf3153a4cac4b82ea621099a, type: 3}
+      propertyPath: m_BackGroundColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6227882907427771259, guid: 07e9e479cf3153a4cac4b82ea621099a, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6227882907427771259, guid: 07e9e479cf3153a4cac4b82ea621099a, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6227882907427771259, guid: 07e9e479cf3153a4cac4b82ea621099a, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7130533601257719829, guid: 07e9e479cf3153a4cac4b82ea621099a, type: 3}
       propertyPath: instanceId
       value: 2a3277b3-2c66-4b48-9a55-fec1ca3e62c2
