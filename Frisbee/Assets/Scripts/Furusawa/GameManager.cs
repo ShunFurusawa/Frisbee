@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private AfterThrow afterThrow;
     [SerializeField] private ParticleManager PM;
+
+    [SerializeField] private GameObject handTouch;
+    [SerializeField] private GameObject totem;
    // [SerializeField] private FrisbeeState currentFrisbeeState;
     private void Awake()
     {
@@ -129,6 +132,12 @@ public class GameManager : MonoBehaviour
     {
         afterThrow.RespawnProcess();
         State = FrisbeeState.Have;
+    }
+
+    public void GetTotem()
+    {
+        handTouch.SetActive(false);
+        totem.SetActive(true);
     }
     
     public void EndGame()

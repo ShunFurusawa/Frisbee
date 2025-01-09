@@ -3,28 +3,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Switch : MonoBehaviour
+namespace Shibato
 {
-    
-    [SerializeField, JapaneseLabel("消すオブジェクト")]
-    private GameObject[] deadGameObjects;
-    [JapaneseLabel("ONのマテリアル")][SerializeField] private Material ON;
-    [JapaneseLabel("OFFのマテリアル")][SerializeField] private Material OFF;
-    private Renderer windRenderer;
-
-    private void Awake()
+    public class Switch : MonoBehaviour
     {
-        windRenderer = GetComponent<Renderer>();
-        windRenderer.material = OFF;
-    }
+        [SerializeField, JapaneseLabel("消すオブジェクト")]
+        private GameObject deadGameObjects;
 
-    private void OnCollisionEnter(Collision other)
-    {
-        foreach (var obj in deadGameObjects) // 配列内の全要素を処理
+        [JapaneseLabel("ONのマテリアル")] [SerializeField]
+        private Material ON;
+
+        [JapaneseLabel("OFFのマテリアル")] [SerializeField]
+        private Material OFF;
+
+        [SerializeField] private Renderer windRenderer;
+
+        private void Awake()
         {
-            if (obj != null) // null チェック
+            windRenderer.material = OFF;
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Frisbee"))
             {
-                obj.SetActive(false); // 非アクティブ化
+                deadGameObjects.SetActive(false); // 非アクティブ化
                 windRenderer.material = ON;
             }
         }

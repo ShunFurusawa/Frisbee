@@ -4,13 +4,23 @@ namespace Shibato
 {
     public class Treasure:MonoBehaviour
     {
+        //[SerializeField] private GameObject totem;
+        [SerializeField] private Animator boxAnimator;
+        [SerializeField] private Animator totemAnimator;
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Player"))
+            if (other.CompareTag("Frisbee"))
             {
-                
-                Destroy(gameObject);
+                Debug.Log("があふぁあ");
+                boxAnimator.Play("treasure");
+                totemAnimator.Play("Totem");
             }
+        }
+
+        public void Destroy()
+        {
+            GameManager.instance.GetTotem();
+            Destroy(gameObject);
         }
     }
 }

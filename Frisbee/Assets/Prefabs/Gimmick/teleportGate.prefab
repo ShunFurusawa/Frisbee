@@ -116,8 +116,8 @@ GameObject:
   - component: {fileID: 4381425539198918421}
   - component: {fileID: 3227773759186663645}
   - component: {fileID: 4044726740503941036}
-  - component: {fileID: 1415962577632093135}
   - component: {fileID: 6996998653207824660}
+  - component: {fileID: 7121316737593267359}
   m_Layer: 0
   m_Name: teleportGate
   m_TagString: Untagged
@@ -191,7 +191,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &1415962577632093135
+--- !u!114 &6996998653207824660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5080175888345485306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d15b44871ea04e9ea9e3fdcfff6d9276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  exitGate: {fileID: 0}
+--- !u!136 &7121316737593267359
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -210,20 +223,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.73098576
-  m_Height: 2.7108781
+  m_Radius: 0.5
+  m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0.02352407}
---- !u!114 &6996998653207824660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5080175888345485306}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d15b44871ea04e9ea9e3fdcfff6d9276, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  exitGate: {fileID: 0}
+  m_Center: {x: 0, y: 0, z: 0}
