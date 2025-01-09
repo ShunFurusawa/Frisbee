@@ -104,6 +104,7 @@ public class AfterThrow : MonoBehaviour
             SetFrisbeeAtHand();
             Debug.Log("TP Success!");
             SoundManager.instance.Play("TP");
+            SetRotate();
         }
         else
         {
@@ -119,6 +120,21 @@ public class AfterThrow : MonoBehaviour
     {
         _rb.velocity = Vector3.zero;
         _rb.angularVelocity = Vector3.zero;
+    }
+
+    private void SetRotate()
+    {
+        // 現在のカメラの回転をオイラー角に変換
+        Vector3 currentEulerAngles = _cameraRig.rotation.eulerAngles;
+
+        // XとZを0にし、Y軸はそのまま維持
+        Quaternion temp = Quaternion.Euler(0f, currentEulerAngles.y, 0f);
+
+        // 修正後の回転を適用
+        _cameraRig.rotation = temp;
+
+        // デバッグログで確認
+        Debug.Log("Set Rotate: " + temp.eulerAngles);
     }
 
     private Vector3 _direction;
