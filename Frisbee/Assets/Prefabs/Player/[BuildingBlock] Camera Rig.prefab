@@ -2265,7 +2265,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf42c156ec634962b5d7613df257c27b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateAmount: 1.2
+  rotateAmount: 20
+  _lineRenderer: {fileID: 3970704049052806932}
+  BeforeVer: 0
 --- !u!114 &3996319836819104583
 MonoBehaviour:
   m_ObjectHideFlags: 0
