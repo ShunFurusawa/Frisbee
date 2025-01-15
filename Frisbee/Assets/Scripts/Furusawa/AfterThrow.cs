@@ -74,6 +74,8 @@ public class AfterThrow : MonoBehaviour
                 // 反射可能オブジェクトなら手元に戻さない *注意:タグが認識されない可能性あり
                 if (other.gameObject.CompareTag("Reflective"))
                     return;
+                if (other.gameObject.CompareTag("CrackedRock"))
+                    return;
 
                 ReturnFrisbee();
             }

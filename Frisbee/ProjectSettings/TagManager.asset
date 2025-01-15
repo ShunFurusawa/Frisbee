@@ -13,6 +13,8 @@ TagManager:
   - Rock
   - Reflective
   - Frisbee
+  - CrackedRock
+  - escape
   layers:
   - Default
   - TransparentFX

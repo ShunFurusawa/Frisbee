@@ -64,7 +64,7 @@ namespace Shibato
                 rb.velocity *= speedDawn;
             }
         }
-
+        
         private void OnValidate()
         {
             liftForce = Mathf.Max(0f, liftForce);

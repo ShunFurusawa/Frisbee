@@ -1,5 +1,6 @@
 using System;
 using Furusawa;
+using Shibato;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -21,6 +22,12 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject handTouch;
     [SerializeField] private GameObject totem;
+    [SerializeField] private Transform tpPoint;
+    [SerializeField] private Transform cameraRig;
+
+    [SerializeField] private GameObject wallApproaching;
+
+    private Wall wall;
    // [SerializeField] private FrisbeeState currentFrisbeeState;
     private void Awake()
     {
@@ -33,6 +40,8 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        wall = wallApproaching.GetComponent<Wall>();
     }
 
     private void Start()
@@ -138,6 +147,16 @@ public class GameManager : MonoBehaviour
     {
         handTouch.SetActive(false);
         totem.SetActive(true);
+    }
+
+    public void EscapeGame()
+    {
+        cameraRig.position = tpPoint.position;
+        wallApproaching.SetActive(true);
+        wall.EscapeStart();
+        SoundManager.instance.StopPlay("BGM");
+        SoundManager.instance.Play("Last");
+        
     }
     
     public void EndGame()

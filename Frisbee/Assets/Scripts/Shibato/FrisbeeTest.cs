@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using TMPro;
 
@@ -14,11 +15,15 @@ namespace Shibato
 
         [SerializeField] [JapaneseLabel("火のオブジェクト、エフェクト")]
         private GameObject fireGameObject;
+        [SerializeField] [JapaneseLabel("岩が壊れるエフェクト")]
+        private GameObject stoneHitEffectPrefab;
 
+        [SerializeField] private GameObject text;
         private PlayerCamera _camera;
         private Rigidbody _rb;
         private const float CameraRemovalDelay = 1f;
         private const float DestroyDelay = 2f;
+        private bool totem = false;
         
         public bool FireElement { get; private set; }
 
@@ -39,6 +44,7 @@ namespace Shibato
 
         private void OnTriggerEnter(Collider other)
         {
+            GameObject otherObject= other.gameObject;
             switch (other.gameObject.tag)
             {
                 case Tags.Item:
@@ -51,11 +57,13 @@ namespace Shibato
                     FireCollision();
                     break;
                 case Tags.Rock:
-                    SpinesCollision();
+                    RockCollision(otherObject);
+                    break;
+                case Tags.Escape:
+                    EscapeCollision(otherObject);
                     break;
             }
         }
-
         private void ItemCollision(Collider item)
         {
             var copiedObject = Instantiate(item.gameObject, transform.position + Vector3.up, Quaternion.identity,
@@ -68,7 +76,23 @@ namespace Shibato
         {
             //_camera.MyDestroyed();
             //Destroyanimetion();
-            GameManager.instance.Respawn();
+            //GameManager.instance.Respawn();
+        }
+
+        private void RockCollision(GameObject crackedRock)
+        {
+            if (totem)
+            {
+                crackedRock.SetActive(false);
+                // エフェクトを生成し、1秒後に削除
+                if (stoneHitEffectPrefab != null)
+                {
+                    var stoneHit = Instantiate(stoneHitEffectPrefab, crackedRock.transform.position, Quaternion.identity);
+                    SoundManager.instance.Play("break");
+                    StartCoroutine(DestroyEffectAfterDelay(stoneHit, 1f));
+                }
+            }
+
         }
         private void FireCollision()
         {
@@ -79,6 +103,28 @@ namespace Shibato
             }
         }
 
+        private void EscapeCollision(GameObject Rock)
+        {
+            Rock.SetActive(false); 
+            GameManager.instance.EscapeGame();
+            // エフェクトを生成し、1秒後に削除
+            if (stoneHitEffectPrefab != null)
+            {
+                var stoneHit = Instantiate(stoneHitEffectPrefab, Rock.transform.position, Quaternion.identity);
+                SoundManager.instance.Play("break");
+                StartCoroutine(DestroyEffectAfterDelay(stoneHit, 1f));
+                
+            }
+            
+        }
+
+        public void GetTotem()
+        {
+            totem = true;
+            text.SetActive(true);
+            StartCoroutine(Text());
+        }
+
         private void Destroyanimetion()
         {
             if (_camera != null)
@@ -86,7 +132,11 @@ namespace Shibato
             else
                 Destroy(gameObject);
         }
-
+        private IEnumerator Text()
+        {
+            yield return new WaitForSeconds(5);
+            text.SetActive(false);
+        }
         private IEnumerator DestroySequence()
         {
             yield return new WaitForSeconds(CameraRemovalDelay);
@@ -94,13 +144,22 @@ namespace Shibato
             yield return new WaitForSeconds(DestroyDelay - CameraRemovalDelay);
             Destroy(gameObject);
         }
+        private IEnumerator DestroyEffectAfterDelay(GameObject effect, float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            if (effect != null)
+            {
+                Destroy(effect);
+            }
+        }
 
         private static class Tags
         {
             public const string Item = "Item";
             public const string Spines = "spines";
             public const string Fire = "Fire";
-            public const string Rock = "Rock";
+            public const string Rock = "CrackedRock";
+            public const string Escape = "escape";
         }
     }
 }
