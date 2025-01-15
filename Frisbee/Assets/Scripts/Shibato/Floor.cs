@@ -21,7 +21,7 @@ namespace Shibato
 
         void OnTriggerEnter(Collider other)
             {
-                if (other.gameObject.CompareTag("Player"))
+                if (other.gameObject.CompareTag("spines"))
                 {
                     var rb = other.gameObject.GetComponent<Rigidbody>();
                     if (rb != null)

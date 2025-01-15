@@ -11417,6 +11417,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 2000171639455669151}
+    - target: {fileID: 95938250943306637, guid: 1c2fd955033bb4546b7437926924916b, type: 3}
+      propertyPath: stoneHitEffectPrefab
+      value: 
+      objectReference: {fileID: 1758473627833946668, guid: 9b21333b068a5084ba09535839bee3c8, type: 3}
     - target: {fileID: 4697896931418490386, guid: 1c2fd955033bb4546b7437926924916b, type: 3}
       propertyPath: m_Name
       value: ReFrisbee

@@ -6,11 +6,12 @@ namespace Shibato
     public class TpGate : MonoBehaviour
     {
         [SerializeField,JapaneseLabel("出口")] private Transform exitGate;
-        private CapsuleCollider exitGateCapsuleCollider;
+        private BoxCollider exitGateCapsuleCollider;
+        
 
         private void Awake()
         {
-            exitGateCapsuleCollider = exitGate.GetComponent<CapsuleCollider>();
+            exitGateCapsuleCollider = exitGate.GetComponent<BoxCollider>();
         }
 
         void OnTriggerEnter(Collider other)

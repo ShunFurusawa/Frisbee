@@ -9,7 +9,8 @@ namespace Shibato
         [JapaneseLabel("揺れる時間")] [SerializeField] private float wobbleDuration = 2.0f;
         [JapaneseLabel("落下するまでの待機時間")] [SerializeField] private float fallDelay = 0.1f;
         [JapaneseLabel("揺れ幅")] [SerializeField] private float wobbleIntensity = 0.1f;
-
+        [SerializeField, JapaneseLabel("消すオブジェクト")] private GameObject deadGameObjects;
+        
         private bool isWobbling = false;
         private Vector3 initialPosition;
         private Rigidbody rb;
@@ -20,18 +21,19 @@ namespace Shibato
 
         private Rigidbody playerRigidbody;
 
-        void Start()
+        void Awake()
         {
             initialPosition = transform.position;
             rb = GetComponent<Rigidbody>();
-            
             boxCollider = GetComponent<BoxCollider>();
+            
             if (rb == null)
             {
                 rb = gameObject.AddComponent<Rigidbody>();
             }
 
             rb.isKinematic = true;
+            rb.useGravity = false;
         }
 
         private bool hasFallen = false;
@@ -60,7 +62,7 @@ namespace Shibato
                 transform.position = initialPosition + new Vector3(offsetX, 0, offsetZ);
                 yield return null;
             }
-
+            deadGameObjects.SetActive(false);
             // 元の位置に戻して少し待機
             transform.position = initialPosition;
             yield return new WaitForSeconds(fallDelay);
@@ -78,10 +80,29 @@ namespace Shibato
             playerRigidbody.useGravity = true;
             hasFallen = true;
             isWobbling = false;
+            
+            yield return new WaitForSeconds(5f);
+            ResetDropArea();
         }
         private void OnDestroy()
         {
             StopAllCoroutines();
+        }
+        public void ResetDropArea()
+        {
+            transform.position = initialPosition;
+            rb.isKinematic = true;
+            rb.useGravity = false;
+            boxCollider.isTrigger = false;
+            hasFallen = false;
+            isWobbling = false;
+            
+            if (playerRigidbody != null)
+            {
+                playerRigidbody.constraints = RigidbodyConstraints.FreezeAll;
+                playerRigidbody.useGravity = false;
+            }
+            deadGameObjects.SetActive(true);
         }
     }
 }

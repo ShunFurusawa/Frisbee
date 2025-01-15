@@ -7,19 +7,21 @@ namespace Shibato
         //[SerializeField] private GameObject totem;
         [SerializeField] private Animator boxAnimator;
         [SerializeField] private Animator totemAnimator;
+        [SerializeField] private FrisbeeTest frisbeeTest;
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Frisbee"))
             {
-                Debug.Log("があふぁあ");
                 boxAnimator.Play("treasure");
                 totemAnimator.Play("Totem");
+                SoundManager.instance.Play("kirakira");
             }
         }
 
         public void Destroy()
         {
             GameManager.instance.GetTotem();
+            frisbeeTest.GetTotem();
             Destroy(gameObject);
         }
     }
