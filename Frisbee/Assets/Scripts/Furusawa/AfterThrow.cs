@@ -186,6 +186,14 @@ public class AfterThrow : MonoBehaviour
             SetVelocityToZero();
             this.gameObject.transform.localPosition = new Vector3(0, 0, 0.2f);
             this.gameObject.transform.localRotation = Quaternion.identity;
+            
+            Vector3 currentEulerAngles = gameObject.transform.localRotation.eulerAngles;
+
+            // XとZを0にし、Y軸はそのまま維持
+            Quaternion temp = Quaternion.Euler(currentEulerAngles.z, 180f, currentEulerAngles.z);
+
+            this.gameObject.transform.localRotation = temp;
+            
             SoundManager.instance.StopPlay("Return");
          //   StartCoroutine(VibrateController(true));
 
